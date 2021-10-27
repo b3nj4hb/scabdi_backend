@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,23 +21,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "producto")
-public class Producto implements Serializable{
+@Table(name="tbl_sede")
+public class Sede implements Serializable {
+	
+	/**
+	 * BENJA
+	 */
+	private static final long serialVersionUID = 75229161586758334L;
 
-	private static final long serialVersionUID = 3754851399214200439L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idproducto")
-	private int id;
-	@Column(name = "nom_producto")
-	private String nombre;
-	private double precio;
-	private int stock;
-	@ManyToOne
-	@JoinColumn(name="idcategoria", nullable = false)
-	private Categoria categoria;
+	@Column(name = "id_sede")
+	private int idsede;
+	
+	@Column(name= "no_sede")
+	private String nombreSede;
+	
+	@Column(name= "es_sede")
+	private int estadoSede;
+	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="iddetalle_venta")
-	private Set<DetalleVenta> detalles;
-
+	@JoinColumn(name="id_banco_comunal")
+	private Set<BancoComunal> bancocomunal;
 }

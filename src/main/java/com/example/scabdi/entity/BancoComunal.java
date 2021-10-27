@@ -1,17 +1,14 @@
 package com.example.scabdi.entity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,15 +17,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "rol")
-public class Rol implements Serializable {
+@Table(name = "tbl_banco_comunal" )
 
-	private static final long serialVersionUID = 3044526150198373369L;
+public class BancoComunal {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idrol")
-	private int id;
-	private String nomrol;
-	@ManyToMany(mappedBy = "roles")
-	private List<Usuario> usuarios = new ArrayList<>(); 
+	@Column(name = "id_banco_comunal")
+	public int id_bancocomunal;
+	
+	@ManyToOne
+	@JoinColumn(name="id_sede", nullable = false)
+	private Sede idsede;
+	
+	@Column(name = "no_banco_comunal")
+	public String no_bancocomunal;
+	
+	@Column(name = "es_banco_comunal")
+	public int es_bancocomunal;
+	
+	
+	
 }
