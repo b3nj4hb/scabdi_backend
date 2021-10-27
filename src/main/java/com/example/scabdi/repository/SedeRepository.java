@@ -25,7 +25,10 @@ public interface SedeRepository extends JpaRepository<Sede, Integer>{
 			+ "(:p_vNO_SEDE, :p_nES_SEDE, @p_nID_SEDE)}", nativeQuery = true) 
 	String saveSede(@Param("p_vNO_SEDE") String P_NO_SEDE,
 			@Param("p_nES_SEDE") int P_ES_SEDE);
-	
-	@Query(value="{Alter table TBL_SEDE auto_increment = 0;}", nativeQuery=true)
+	/*
+	@Query(value="Alter table TBL_SEDE auto_increment = 0", nativeQuery=true)
 	String reiniciarAutoIncrement();
+	*/
+	@Query(value="{call SP_DEL_TBL_SEDE(:p_nID_SEDE)}", nativeQuery = true)
+	String eliminarSede(@Param("p_nID_SEDE") int P_ID_SEDE);
 }
