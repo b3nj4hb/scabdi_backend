@@ -1,6 +1,5 @@
 package com.example.scabdi.entity;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -18,41 +17,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="TBL_PERSONA")
+@Table(name = "TBL_PERSONA")
 
 public class Persona implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1745994231778055557L;
 
-	/**
-	 * BENJA
-	 */
+	private static final long serialVersionUID = -1745994231778055557L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_PERSONA")
+	@Column(name = "ID_PERSONA")
 	private int id;
 
-	@Column(name="NO_PERSONA")
+	@Column(name = "NO_PERSONA")
 	private String nombre;
-	
-	@Column(name="AP_PERSONA")
+
+	@Column(name = "AP_PERSONA")
 	private String apellido;
-	
-	@Column(name="NU_DNI")
+
+	@Column(name = "NU_DNI")
 	private String dni;
-	
-	@Column(name="EM_CORREO")
+
+	@Column(name = "EM_CORREO")
 	private String correo;
-	
-	@Column(name="NU_TELEFONO")
+
+	@Column(name = "NU_TELEFONO")
 	private String telefono;
-	
-	//@OneToOne(mappedBy = "TBL_PERSONA")
 
-
-	
+	// @OneToOne(mappedBy = "TBL_PERSONA")
 
 }
