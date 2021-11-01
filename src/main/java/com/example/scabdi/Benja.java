@@ -1,5 +1,7 @@
 package com.example.scabdi;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,11 +117,11 @@ public class Benja implements CommandLineRunner {
 		 * +" - "+rpr.getId_rol());
 		 */
 		// AGREGAR ROL PRIVILEGIO
-		// rpRepository.insertar(1, 1);
+		// rpRepository.insertar(2, 1);
 
 		// ELIMINAR ROL PRIVILEGIO
-		 rpRepository.eliminar(11);
-
+		// rpRepository.eliminar(11);
+			
 		// ACTUALIZAR ROL PRIVILEGIO
 		// rpRepository.actualizar(11, 2, 2);
 
