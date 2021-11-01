@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,12 +29,20 @@ public class Recurso implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_RECURSO")
 	private int id;
+/*
+	@ManyToOne
+	@JoinColumn(name = "ID_SESION", nullable = false)
+	private Sesion id_sesion;
 
-	@Column(name = "ID_SESION")
+	@ManyToOne
+	@JoinColumn(name = "ID_TIPO_RECURSO", nullable = false)
+	private TipoRecurso id_tipo_recurso;
+*/
+	@Column
 	private int id_sesion;
-
-	@Column(name = "ID_TIPO_RECURSO")
-	private int id_tipo_recurso;
+	
+	@Column
+	int id_tipo_recurso;
 
 	@Column(name = "NO_RECURSO")
 	private String no_recurso;

@@ -80,25 +80,24 @@ public class Benja implements CommandLineRunner {
 
 		// ----------- RECURSO -----------
 
-		// LISTAR PERSONA
+		// LISTAR RECURSO
 		/*
-		 * List<Persona> per = personaRepository.listar(); for(int i=0;i<per.size();
-		 * i++) { System.out.println( per.get(i).getId()+" "+
-		 * per.get(i).getNombre()+" \t"+ per.get(i).getApellido()+" \t"); }
+		 * List<Recurso> rec = recursoRepository.listar(); for (int i = 0; i <
+		 * rec.size(); i++) { System.out.println(rec.get(i).getId() + " " +
+		 * rec.get(i).getNo_recurso()+ " "+rec.get(i).getId_sesion()); }
 		 */
+		// BUSCAR RECURSO
+		// Recurso urso = recursoRepository.buscar(2).get();
+		// System.out.println("Recurso: " + urso.getNo_recurso());
 
-		// BUSCAR PERSONA
-		// Persona sona = personaRepository.buscar(7).get();
-		// System.out.println("Persona: "+sona.getNombre());
-
-		// AGREGAR PERSONA
+		// AGREGAR RECURSO
 		// personaRepository.insertar("Per", "Sona", "00000000", "Per@gmail.com",
 		// "000000000");
 
-		// ELIMINAR PERSONA
+		// ELIMINAR RECURSO
 		// personaRepository.eliminar(7);
 
-		// ACTUALIZAR PERSONA
+		// ACTUALIZAR RECURSO
 		// personaRepository.actualizar
 		// (7, "PERSONA", "APELLIDO", "12345678", "CORREO@UPEU.EDU.PE", "123456789");
 

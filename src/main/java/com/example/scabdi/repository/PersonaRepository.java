@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.example.scabdi.entity.Persona;
 
 @Repository
-public interface PersonaRepository {
+public interface PersonaRepository extends JpaRepository<Persona, Integer>{
 	// LISTAR
 	@Query(value = "{call SP_LISTA_TBL_PERSONA()}", nativeQuery = true)
 	List<Persona> listar();

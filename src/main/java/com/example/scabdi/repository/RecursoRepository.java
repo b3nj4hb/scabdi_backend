@@ -15,7 +15,7 @@ public interface RecursoRepository extends JpaRepository<Recurso, Integer>{
 	List<Recurso> listar();
 
 	// BUSCAR
-	@Query(value = "{call SP_BUSCAR_TBL_PERSONA(:P_ID)}", nativeQuery = true)
+	@Query(value = "{call SP_BUSCAR_TBL_RECURSO(:P_ID)}", nativeQuery = true)
 	Optional<Recurso> buscar(@Param("P_ID") int P_ID);
 
 	// INSERTAR
