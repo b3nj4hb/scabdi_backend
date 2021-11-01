@@ -9,32 +9,28 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.scabdi.entity.RolPrivilegio;
 
-public interface RolPrivilegioRepository extends JpaRepository<RolPrivilegio, Integer>{
+public interface RolPrivilegioRepository extends JpaRepository<RolPrivilegio, Integer> {
 
 	// LISTAR
-	@Query(value = "{call SP_LISTA_TBL_ROL_PRIVILEGIO()}", nativeQuery = true)
+	@Query(value = "{call SP_LISTA_TSG_ROL_PRIVILEGIO()}", nativeQuery = true)
 	List<RolPrivilegio> listar();
 
 	// BUSCAR
-	@Query(value = "{call SP_BUSCAR_TBL_ROL_PRIVILEGIO(:P_ID)}", nativeQuery = true)
+	@Query(value = "{call SP_BUSCAR_TSG_ROL_PRIVILEGIO(:P_ID)}", nativeQuery = true)
 	Optional<RolPrivilegio> buscar(@Param("P_ID") int P_ID);
 
 	// INSERTAR
-	@Query(value = "{call SP_INS_TBL_ROL_PRIVILEGIO" + "(:P_ID_SESION, :P_ID_TIPO_RECURSO, :P_NO_RECURSO,"
-			+ " :P_FI_RECURSO, :P_URL_RECURSO, @P_ID)}", nativeQuery = true)
-	String insertar(@Param("P_ID_SESION") int P_ID_SESION, @Param("P_ID_TIPO_RECURSO") int P_ID_TIPO_RECURSO,
-			@Param("P_NO_RECURSO") String P_NO_RECURSO, @Param("P_FI_RECURSO") String P_FI_RECURSO,
-			@Param("P_URL_RECURSO") String P_URL_RECURSO);
+	@Query(value = "{call SP_INS_TSG_ROL_PRIVILEGIO" + "(:p_nID_ROL, :p_nID_PRIVILEGIO, @P_ID)}", nativeQuery = true)
+	String insertar(@Param("p_nID_ROL") int p_nID_ROL, @Param("p_nID_PRIVILEGIO") int p_nID_PRIVILEGIO);
 
 	// ELIMINAR
-	@Query(value = "{call SP_DEL_TBL_ROL_PRIVILEGIO(:P_ID)}", nativeQuery = true)
+	@Query(value = "{call SP_DEL_TSG_ROL_PRIVILEGIO(:P_ID)}", nativeQuery = true)
 	String eliminar(@Param("P_ID") int P_ID);
 
-	// ACTULALIZAR
-	@Query(value = "{CALL SP_UPD_TBL_ROL_PRIVILEGIO" + "(:P_ID_RECURSO, :P_ID_SESION, :P_ID_TIPO_RECURSO, "
-			+ ":P_NO_RECURSO, :P_FI_RECURSO, :P_URL_RECURSO, @P_OK)}", nativeQuery = true)
-	String actualizar(@Param("P_ID_RECURSO") int P_ID_RECURSO, @Param("P_ID_SESION") int P_ID_SESION,
-			@Param("P_ID_TIPO_RECURSO") int P_ID_TIPO_RECURSO, @Param("P_NO_RECURSO") String P_NO_RECURSO,
-			@Param("P_FI_RECURSO") String P_FI_RECURSO, @Param("P_URL_RECURSO") String P_URL_RECURSO);
+	// ACTUALIZAR
+	@Query(value = "{CALL SP_UPD_TSG_ROL_PRIVILEGIO"
+			+ "(:P_ID, :P_ID_ROL, :P_ID_PRIVILEGIO, @P_OK)}", nativeQuery = true)
+	String actualizar(@Param("P_ID") int P_ID, @Param("P_ID_ROL") int P_ID_ROL,
+			@Param("P_ID_PRIVILEGIO") int P_ID_PRIVILEGIO);
 
 }

@@ -21,7 +21,7 @@ public class Benja implements CommandLineRunner {
 	@Autowired
 	private RecursoRepository recursoRepository;
 	@Autowired
-	private RolPrivilegioRepository rolPrivilegiosRepository;
+	private RolPrivilegioRepository rpRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringJpa2Application.class, args);
@@ -91,39 +91,37 @@ public class Benja implements CommandLineRunner {
 		// System.out.println("Recurso: " + urso.getNo_recurso());
 
 		// AGREGAR RECURSO
-		// personaRepository.insertar("Per", "Sona", "00000000", "Per@gmail.com",
-		// "000000000");
+		// recursoRepository.insertar(1, 1, "PRUEBA", "BACKEND", "URL PRUEBA");
 
 		// ELIMINAR RECURSO
-		// personaRepository.eliminar(7);
+		// recursoRepository.eliminar(4);
 
 		// ACTUALIZAR RECURSO
-		// personaRepository.actualizar
-		// (7, "PERSONA", "APELLIDO", "12345678", "CORREO@UPEU.EDU.PE", "123456789");
+		// recursoRepository.actualizar(4, 2, 2, "ACTUALIZADO", "PRUEBA", "URL
+		// ACTUALIZADA");
 
 		// ----------- ROL PRIVILEGIO -----------
 
-		// LISTAR PERSONA
+		// LISTAR ROL PRIVILEGIO
 		/*
-		 * List<Persona> per = personaRepository.listar(); for(int i=0;i<per.size();
-		 * i++) { System.out.println( per.get(i).getId()+" "+
-		 * per.get(i).getNombre()+" \t"+ per.get(i).getApellido()+" \t"); }
+		 * List<RolPrivilegio> rp = rpRepository.listar(); for (int i = 0; i <
+		 * rp.size(); i++) { System.out.println( rp.get(i).getId() + " " +
+		 * rp.get(i).getId_privilegio() + " \t" + rp.get(i).getId_rol() + " \t"); }
 		 */
+		// BUSCAR ROL PRIVILEGIO
+		/*
+		 * RolPrivilegio rpr = rpRepository.buscar(1).get();
+		 * System.out.println("Busqueda: - "+rpr.getId()+" - "+rpr.getId_privilegio()
+		 * +" - "+rpr.getId_rol());
+		 */
+		// AGREGAR ROL PRIVILEGIO
+		// rpRepository.insertar(1, 1);
 
-		// BUSCAR PERSONA
-		// Persona sona = personaRepository.buscar(7).get();
-		// System.out.println("Persona: "+sona.getNombre());
+		// ELIMINAR ROL PRIVILEGIO
+		 rpRepository.eliminar(11);
 
-		// AGREGAR PERSONA
-		// personaRepository.insertar("Per", "Sona", "00000000", "Per@gmail.com",
-		// "000000000");
-
-		// ELIMINAR PERSONA
-		// personaRepository.eliminar(7);
-
-		// ACTUALIZAR PERSONA
-		// personaRepository.actualizar
-		// (7, "PERSONA", "APELLIDO", "12345678", "CORREO@UPEU.EDU.PE", "123456789");
+		// ACTUALIZAR ROL PRIVILEGIO
+		// rpRepository.actualizar(11, 2, 2);
 
 	}
 }
