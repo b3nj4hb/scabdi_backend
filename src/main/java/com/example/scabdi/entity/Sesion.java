@@ -38,7 +38,7 @@ public class Sesion implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_MODULO", nullable = false)
-	private Tipo_recurso id_modulo;
+	private TipoRecurso id_modulo;
 
 	@Column(name = "FE_INICIO_SESION")
 	private String fe_inicio_sesion;

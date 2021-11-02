@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "TBL_TIPO_RECURSO")
-public class Tipo_recurso {
+public class TipoRecurso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_TIPO_RECURSO")
