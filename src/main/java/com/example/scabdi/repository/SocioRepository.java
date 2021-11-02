@@ -12,7 +12,7 @@ import com.google.common.base.Optional;
 public interface SocioRepository extends JpaRepository<SocioRepository, Integer>{
 	//LISTAR
 			@Query(value = "{call SP_LISTA_TBL_SOCIO()}", nativeQuery = true) 
-			List<SocioRepository> listarsocio();
+			List<Socio> listarsocio();
 	//BUSCAR
 			@Query(value = "{call SP_BUSCAR_TBL_SOCIO(:P_ID)}", nativeQuery = true)
 			Optional<Socio> buscar(@Param("P_ID") int P_ID);		

@@ -48,10 +48,10 @@ public class Josue implements CommandLineRunner {
 		//--------------Socio------------------------
 		
 		// Listar Socio
-		List<SocioRepository> se = socioRepository.listarsocio();
+		List<Socio> se = socioRepository.listarsocio();
 		for (int i = 0; i < se.size(); i++) {
-			System.out.println(se.get(i).getId());
-			System.out.println(se.get(i).getNombre());
+			System.out.println(se.get(i).getId_p());
+			System.out.println(se.get(i).getId_b());
 		}
 		
 		// Buscar Tipo_Recurso
