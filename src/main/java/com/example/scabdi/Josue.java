@@ -17,6 +17,8 @@ public class Josue implements CommandLineRunner {
 	private SocioRepository socioRepository;
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private PedidoRepository pedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringJpa2Application.class, args);
@@ -71,7 +73,7 @@ public class Josue implements CommandLineRunner {
 		
 		//--------------Usuario-----------------------
 		
-		// Listar Usuario
+		/*// Listar Usuario
 		List<Usuario> se = usuarioRepository.listarusuario();
 		for (int i = 0; i < se.size(); i++) {
 			System.out.println(se.get(i).getId());
@@ -90,9 +92,31 @@ public class Josue implements CommandLineRunner {
 		usuarioRepository.eliminar(7);
 
 		// Actualizar Usuario
-		usuarioRepository.actualizar(1, "Josue", "contraseña");
+		usuarioRepository.actualizar(1, "Josue", "contraseña");*/
 		
+		//-----------------Pedido--------------------
+		
+		// Listar Pedido
+		List<Pedido> se = pedidoRepository.listarpedido();
+		for (int i = 0; i < se.size(); i++) {
+			System.out.println(se.get(i).getId());
+			System.out.println(se.get(i).getId_p());
+			System.out.println(se.get(i).getDescripcion());
+			System.out.println(se.get(i).getFecha());
+		}
+		
+		// Buscar Pedido
+		Pedido rl = pedidoRepository.buscar(1).get();
+		System.out.println(rl.getId() + " - " + rl.getId_p() + " - " + rl.getDescripcion() + " - " + rl.getFecha());
+		
+		// Agregar Pedido
+		pedidoRepository.insertar(1,"Descripcion Interesante de prueba", "12/12/22");
 
+		// Eliminar Pedido
+		pedidoRepository.eliminar(7);
+
+		// Actualizar Pedido
+		pedidoRepository.actualizar(2,"Descripcion de prueba testeo 2");
 	}
 
 }
