@@ -27,25 +27,25 @@ public class PersonaServiceImpl implements PersonaService{
 	@Override
 	public Persona create(Persona al) {
 		// TODO Auto-generated method stub
-		return null;
+		return personaRepository.save(al);
 	}
 
 	@Override
 	public Persona read(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return personaRepository.findById(id).get();
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+		personaRepository.deleteById(id);
 	}
 
 	@Override
 	public Persona update(Persona al) {
 		// TODO Auto-generated method stub
-		return null;
+		return personaRepository.save(al);
 	}
 
 	
