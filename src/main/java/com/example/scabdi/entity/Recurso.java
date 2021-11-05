@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 /*import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;*/
 import javax.persistence.Table;
@@ -42,7 +44,7 @@ public class Recurso implements Serializable {
 	private int id_sesion;
 	
 	@Column
-	int id_tipo_recurso;
+	private int id_tipo_recurso;
 
 	@Column(name = "NO_RECURSO")
 	private String no_recurso;

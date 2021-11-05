@@ -35,9 +35,10 @@ public class TipoRecurso implements Serializable {
 	@Column(name = "NO_TIPO_RECURSO")
 	private String no_tipo_recurso;
 
+	/*
 	// RELACIONES
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_tipo_recurso")
 	private Set<Recurso> recurso;
-
+	*/
 }
