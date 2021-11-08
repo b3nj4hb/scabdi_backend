@@ -2,6 +2,7 @@ package com.example.scabdi.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TBL_SOCIO")
 public class Socio {
+	@Id
 	@Column(name = "ID_PERSONA")
 	private int id_p;
 	@Column(name = "ID_BANCO_COMUNAL")

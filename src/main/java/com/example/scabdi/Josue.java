@@ -97,6 +97,7 @@ public class Josue implements CommandLineRunner {
 		//-----------------Pedido--------------------
 		
 		// Listar Pedido
+		/*
 		List<Pedido> se = pedidoRepository.listarpedido();
 		for (int i = 0; i < se.size(); i++) {
 			System.out.println(se.get(i).getId());
@@ -104,19 +105,20 @@ public class Josue implements CommandLineRunner {
 			System.out.println(se.get(i).getDescripcion());
 			System.out.println(se.get(i).getFecha());
 		}
-		
+		*/
 		// Buscar Pedido
+		/*
 		Pedido rl = pedidoRepository.buscar(1).get();
 		System.out.println(rl.getId() + " - " + rl.getId_p() + " - " + rl.getDescripcion() + " - " + rl.getFecha());
-		
+		*/
 		// Agregar Pedido
-		pedidoRepository.insertar(1,"Descripcion Interesante de prueba", "12/12/22");
+		//pedidoRepository.insertar(1,"Descripcion Interesante de prueba", "12/12/22");
 
 		// Eliminar Pedido
-		pedidoRepository.eliminar(7);
+		//pedidoRepository.eliminar(7);
 
 		// Actualizar Pedido
-		pedidoRepository.actualizar(2,"Descripcion de prueba testeo 2");
+		//pedidoRepository.actualizar(2,"Descripcion de prueba testeo 2");
 	}
 
 }
