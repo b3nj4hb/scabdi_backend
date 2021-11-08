@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.scabdi.entity.Persona;
 import com.example.scabdi.service.PersonaService;
-
-import com.example.scabdi.entity.Persona;
 import com.example.scabdi.repository.PersonaRepository;
-import com.example.scabdi.service.PersonaService;
 
 @Service
 public class PersonaServiceImpl implements PersonaService{
