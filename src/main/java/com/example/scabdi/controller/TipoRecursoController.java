@@ -18,6 +18,7 @@ import com.example.scabdi.service.TipoRecursoService;
 @RequestMapping("/api/tiporecurso")
 public class TipoRecursoController {
 
+
 	@Autowired
 	private TipoRecursoService tipoRecursoService;
 	@GetMapping("/all")

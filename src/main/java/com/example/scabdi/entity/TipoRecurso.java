@@ -21,6 +21,6 @@ public class TipoRecurso {
 	@Column(name = "ID_TIPO_RECURSO")
 	private int id;
 	@Column(name = "NO_TIPO_RECURSO")
-	private String nombre;
+	private String tipo_recurso;
 
 }
