@@ -29,8 +29,7 @@ public class RecursoController {
 	@PostMapping("/create")
 	public ResponseEntity<Recurso> save(@RequestBody Recurso r) {
 		try {
-			Recurso re = recursoService.create(new Recurso(r.getId(), r.getId_sesion(), r.getId_tipo_recurso(),
-					r.getNo_recurso(), r.getFi_recurso(), r.getUrl_recurso()));
+			Recurso re = recursoService.create(r);
 			return new ResponseEntity<>(re, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -83,10 +82,10 @@ public class RecursoController {
 				Recurso re = recursoService.read(id);
 				if (re.getId() > 0) {
 					re.setId_sesion(r.getId_sesion());
-					re.setId_tipo_recurso(r.getId_tipo_recurso());
-					re.setNo_recurso(r.getNo_recurso());
-					re.setFi_recurso(r.getFi_recurso());
-					re.setUrl_recurso(r.getUrl_recurso());
+					re.setId_tipo(r.getId_tipo());
+					re.setNombre(r.getNombre());
+					re.setFile(r.getFile());
+					re.setUrl(r.getUrl());
 
 					return new ResponseEntity<>(recursoService.create(re), HttpStatus.OK);
 				} else {

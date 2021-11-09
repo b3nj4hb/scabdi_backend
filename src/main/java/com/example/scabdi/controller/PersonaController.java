@@ -29,8 +29,7 @@ public class PersonaController {
 	@PostMapping("/create")
 	public ResponseEntity<Persona> save(@RequestBody Persona per) {
 		try {
-			Persona p = personaService.create(new Persona(per.getId(), per.getNombre(), per.getApellido(), per.getDni(),
-					per.getCorreo(), per.getTelefono()));
+			Persona p = personaService.create(per);
 			return new ResponseEntity<>(p, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception

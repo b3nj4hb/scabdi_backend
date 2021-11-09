@@ -1,6 +1,8 @@
 package com.example.scabdi.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,9 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
@@ -28,33 +32,37 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "tbl_recurso")
+@Table(name = "tbl_modulo")
 
-public class Recurso implements Serializable {
-
-	private static final long serialVersionUID = 319819275701613594L;
-
+public class Modulo implements Serializable {
+	
+	private static final long serialVersionUID = -573681505674342614L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_RECURSO")
+	@Column(name = "ID_MODULO")
 	private int id;
-
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Sesion id_sesion;
 	
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_tipo_recurso", referencedColumnName = "id_tipo_recurso")
+	@JoinColumn(name = "id_area", referencedColumnName = "id_area")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private TipoRecurso id_tipo;
+	private Area id_area;
 	
-	@Column(name = "NO_RECURSO")
+	@Column(name = "NO_MODULO")
 	private String nombre;
+	
+	@Column(name = "DE_MODULO")
+	private String descripcion;
 
-	@Column(name = "FI_RECURSO")
-	private String file;
-
-	@Column(name = "URL_RECURSO")
-	private String url;
+	@Column(name = "CA_TOTAL_RECURSOS")
+	private String recursos;
+	
+	//RELACIONES
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
+	@JsonIgnore
+	private List<Sesion> sesion = new ArrayList<>();
+	/*
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
+	@JsonIgnore
+	private List<BancoModulo> bancoModulo = new ArrayList<>(); */
 }
