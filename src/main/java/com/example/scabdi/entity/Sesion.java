@@ -11,14 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,40 +28,37 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Setter
 @Getter
-@Table(name = "tbl_modulo")
+@Entity
+@Table(name = "TBL_SESION")
 
-public class Modulo implements Serializable {
-	
-	private static final long serialVersionUID = -573681505674342614L;
-	
+public class Sesion implements Serializable {
+
+	private static final long serialVersionUID = -6638137602792411742L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_MODULO")
+	@Column(name = "ID_SESION")
 	private int id;
-	
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_area", referencedColumnName = "id_area")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Area id_area;
-	
-	@Column(name = "NO_MODULO")
-	private String nombre;
-	
-	@Column(name = "DE_MODULO")
-	private String descripcion;
 
-	@Column(name = "CA_TOTAL_RECURSOS")
-	private String recursos;
+	@Column(name = "NO_SESION")
+	private String no_sesion;
+
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_modulo", referencedColumnName = "id_modulo")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Modulo id_modulo;
+
+	@Column(name = "FE_INICIO_SESION")
+	private String fe_inicio_sesion;
+	
+	@Column(name = "FE_FIN_SESION")
+	private String fe_fin_sesion;
 	
 	//RELACIONES
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_sesion")
 	@JsonIgnore
-	private List<Sesion> sesion = new ArrayList<>();
-	/*
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
-	@JsonIgnore
-	private List<BancoModulo> bancoModulo = new ArrayList<>(); */
+	private List<Recurso> recurso = new ArrayList<>();
+	
 }

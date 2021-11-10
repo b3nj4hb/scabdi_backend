@@ -1,5 +1,5 @@
 package com.example.scabdi.entity;
 
-public class Inscrito {
+public class Conferencia {
 
 }
