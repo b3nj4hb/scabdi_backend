@@ -43,7 +43,7 @@ public class Rol implements Serializable {
 	private String no_rol;
 
 	//Relaciones
-	
+	/*
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_rol")
 	@JsonIgnore
 	private List<RolPrivilegio> rolPrivilegio = new ArrayList<>();
@@ -51,4 +51,5 @@ public class Rol implements Serializable {
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_rol")
 	@JsonIgnore
 	private List<UsuarioRol> usuarioRol = new ArrayList<>();
+	*/
 }
