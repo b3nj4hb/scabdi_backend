@@ -2,12 +2,18 @@ package com.example.scabdi.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,15 +34,17 @@ public class Valoracion implements Serializable {
 	@Column(name = "id_valoracion")
 	private int id;
 
-	@Column(name = "id_inscrito")
-	private int id_incrito;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_inscrito", referencedColumnName = "id_inscrito")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Inscrito id_inscrito;
 
-	@Column(name = "id_sesion")
-	private int id_sesion;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Sesion id_sesion;
 
 	@Column(name = "nu_puntuacion")
 	private String puntuacion;
-
-	// @OneToOne(mappedBy = "TBL_PERSONA")
 
 }

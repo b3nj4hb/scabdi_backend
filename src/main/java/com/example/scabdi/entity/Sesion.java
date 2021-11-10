@@ -61,4 +61,8 @@ public class Sesion implements Serializable {
 	@JsonIgnore
 	private List<Recurso> recurso = new ArrayList<>();
 	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_sesion")
+	@JsonIgnore
+	private List<Valoracion> valoracion = new ArrayList<>();
+	
 }

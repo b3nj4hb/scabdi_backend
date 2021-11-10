@@ -1,6 +1,9 @@
 package com.example.scabdi.entity;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +47,13 @@ public class BancoComunal {
 	@Column(name = "es_banco_comunal")
 	public int es_bancocomunal;
 	
+	//Relaciones
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_banco")
+	@JsonIgnore
+	private List<Socio> socio = new ArrayList<>();
 	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_banco")
+	@JsonIgnore
+	private List<BancoModulo> bancoModulo = new ArrayList<>();
 	
 }

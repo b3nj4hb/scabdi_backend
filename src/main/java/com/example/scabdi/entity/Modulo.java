@@ -61,8 +61,12 @@ public class Modulo implements Serializable {
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
 	@JsonIgnore
 	private List<Sesion> sesion = new ArrayList<>();
-	/*
+	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
 	@JsonIgnore
-	private List<BancoModulo> bancoModulo = new ArrayList<>(); */
+	private List<Inscrito> inscrito = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
+	@JsonIgnore
+	private List<BancoModulo> bancoModulo = new ArrayList<>();
 }

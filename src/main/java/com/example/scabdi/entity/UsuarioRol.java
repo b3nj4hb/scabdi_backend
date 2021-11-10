@@ -2,12 +2,18 @@ package com.example.scabdi.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,12 +34,14 @@ public class UsuarioRol implements Serializable {
 	@Column(name = "id_usuario_rol")
 	private int id;
 
-	@Column(name = "id_persona")
-	private String id_persona;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Usuario id_persona;
 
-	@Column(name = "id_rol")
-	private String id_rol;
-	
-	// @OneToOne(mappedBy = "TBL_PERSONA")
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Rol id_rol;
 
 }

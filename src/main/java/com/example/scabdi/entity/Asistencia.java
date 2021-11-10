@@ -2,12 +2,18 @@ package com.example.scabdi.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,15 +34,17 @@ public class Asistencia implements Serializable {
 	@Column(name = "id_asistencia")
 	private int id;
 
-	@Column(name = "id_persona")
-	private int id_persona;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Socio id_persona;
 
-	@Column(name = "id_conferencia")
-	private int id_conferencia;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_conferencia", referencedColumnName = "id_conferencia")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Conferencia id_conferencia;
 
 	@Column(name = "de_comentario")
 	private String descripcion;
-
-	// @OneToOne(mappedBy = "TBL_PERSONA")
 
 }

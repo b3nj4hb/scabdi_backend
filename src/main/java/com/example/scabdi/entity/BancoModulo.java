@@ -2,12 +2,18 @@ package com.example.scabdi.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TBL_PERSONA")
+@Table(name = "tbl_banco_modulo")
 
 public class BancoModulo implements Serializable {
 
@@ -28,12 +34,14 @@ public class BancoModulo implements Serializable {
 	@Column(name = "id_banco_modulo")
 	private int id;
 
-	@Column(name = "id_banco_comunal")
-	private int id_banco;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_banco_comunal", referencedColumnName = "id_banco_comunal")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private BancoComunal id_banco;
 
-	@Column(name = "id_modulo")
-	private int id_modulo;
-
-	// @OneToOne(mappedBy = "TBL_PERSONA")
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_modulo", referencedColumnName = "id_modulo")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Modulo id_modulo;
 
 }

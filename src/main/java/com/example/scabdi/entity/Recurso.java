@@ -1,6 +1,8 @@
 package com.example.scabdi.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,9 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
@@ -57,4 +61,13 @@ public class Recurso implements Serializable {
 
 	@Column(name = "URL_RECURSO")
 	private String url;
+	
+	//Relaciones
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_recurso")
+	@JsonIgnore
+	private List<Pregunta> pregunta = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_recurso")
+	@JsonIgnore
+	private List<Progreso> progreso = new ArrayList<>();
 }

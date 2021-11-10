@@ -2,12 +2,18 @@ package com.example.scabdi.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,11 +34,15 @@ public class Progreso implements Serializable {
 	@Column(name = "ID_PROGRESO")
 	private int id;
 
-	@Column(name = "ID_INSCRITO")
-	private int id_inscrito;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_inscrito", referencedColumnName = "id_inscrito")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Inscrito id_inscrito;
 
-	@Column(name = "ID_RECURSO")
-	private int id_recurso;
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Recurso id_recurso;
 
 	@Column(name = "ES_PROGRESO")
 	private int es_progreso;
