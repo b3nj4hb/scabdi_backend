@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.scabdi.project.Entity.Rol;
-import com.scabdi.project.Repository.RolRepository;
-import com.scabdi.project.Service.RolService;
+import com.example.scabdi.entity.Rol;
+import com.example.scabdi.repository.RolRepository;
+import com.example.scabdi.service.RolService;
 @Service
 public class RolServiceImpl implements RolService{
 
