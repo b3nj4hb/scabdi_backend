@@ -2,24 +2,33 @@ package com.example.scabdi.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-/*import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;*/
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TBL_RECURSO")
+@Setter
+@Getter
+@Table(name = "tbl_recurso")
 
 public class Recurso implements Serializable {
 
@@ -29,27 +38,23 @@ public class Recurso implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_RECURSO")
 	private int id;
-/*
-	@ManyToOne
-	@JoinColumn(name = "ID_SESION", nullable = false)
+
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Sesion id_sesion;
-
-	@ManyToOne
-	@JoinColumn(name = "ID_TIPO_RECURSO", nullable = false)
-	private TipoRecurso id_tipo_recurso;
-*/
-	@Column
-	private int id_sesion;
 	
-	@Column
-	int id_tipo_recurso;
-
+	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_tipo_recurso", referencedColumnName = "id_tipo_recurso")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private TipoRecurso id_tipo;
+	
 	@Column(name = "NO_RECURSO")
-	private String no_recurso;
+	private String nombre;
 
 	@Column(name = "FI_RECURSO")
-	private String fi_recurso;
+	private String file;
 
 	@Column(name = "URL_RECURSO")
-	private String url_recurso;
+	private String url;
 }
