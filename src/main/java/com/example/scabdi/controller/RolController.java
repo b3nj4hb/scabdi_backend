@@ -23,7 +23,7 @@ public class RolController {
 	@PostMapping("/agregar")
 	public ResponseEntity<Rol> save(@RequestBody Rol rol){
 		try {
-			Rol rl = rolService.create(new Rol(rol.getId_rol(),rol.getNo_rol()));
+			Rol rl = rolService.create(rol);
 			return new ResponseEntity<>(rl, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -48,7 +48,7 @@ public class RolController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Rol> getUser(@PathVariable("id") int id){
 		Rol paciente = rolService.read(id);
-			if(paciente.getId_rol()>0) {
+			if(paciente.getId()>0) {
 				return new ResponseEntity<>(paciente, HttpStatus.OK);
 			}else {
 			
@@ -68,7 +68,7 @@ public class RolController {
 	public ResponseEntity<Rol> update(@RequestBody Rol rl, @PathVariable("id") int id){
 		try {
 			Rol rll = rolService.read(id);
-			if(rll.getId_rol()>0) {
+			if(rll.getId()>0) {
 				rll.setNo_rol(rl.getNo_rol());
 				return new ResponseEntity<>(rolService.create(rll),HttpStatus.OK);
 			}else {
