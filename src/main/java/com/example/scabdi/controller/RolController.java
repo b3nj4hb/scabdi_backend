@@ -16,11 +16,11 @@ import com.example.scabdi.entity.Rol;
 import com.example.scabdi.serviceImpl.RolServiceImpl;
 
 @RestController
-@RequestMapping("/api/roles")
+@RequestMapping("/api/rol")
 public class RolController {
 	@Autowired
 	private RolServiceImpl rolService;
-	@PostMapping("/agregar")
+	@PostMapping("/create")
 	public ResponseEntity<Rol> save(@RequestBody Rol rol){
 		try {
 			Rol rl = rolService.create(rol);
@@ -45,7 +45,7 @@ public class RolController {
 		}
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/read/{id}")
 	public ResponseEntity<Rol> getUser(@PathVariable("id") int id){
 		Rol paciente = rolService.read(id);
 			if(paciente.getId()>0) {
