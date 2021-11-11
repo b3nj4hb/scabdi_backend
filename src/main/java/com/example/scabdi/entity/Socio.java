@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -32,6 +33,9 @@ public class Socio implements Serializable {
 	private static final long serialVersionUID = 9056228635929990065L;
 
 	@Id
+	@Column(name = "id_persona")
+	private int id;
+	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

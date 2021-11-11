@@ -54,7 +54,7 @@ public class Persona implements Serializable {
 	//Relaciones
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
 	@JsonIgnore
-	private List<Usuario> usuario = new ArrayList<>();
+	private Usuario usuario;
 	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
 	@JsonIgnore
@@ -62,6 +62,6 @@ public class Persona implements Serializable {
 	
 	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
 	@JsonIgnore
-	private List<Socio> socio = new ArrayList<>();
+	private Socio socio;
 
 }

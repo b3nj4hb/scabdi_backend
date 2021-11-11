@@ -32,11 +32,14 @@ import lombok.Setter;
 @Getter
 @Table(name = "tsg_usuario")
 
-public class Usuario implements Serializable {
+public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = -7299684846624197312L;
 
 	@Id
+	@Column(name = "id_persona")
+	private int id;
+	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
