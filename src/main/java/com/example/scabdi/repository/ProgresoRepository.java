@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.example.scabdi.entity.Progreso;
 
+@Repository
 public interface ProgresoRepository extends JpaRepository<Progreso, Integer> {
 	// LISTAR
 	@Query(value = "{call SP_LISTA_TBL_PROGRESO()}", nativeQuery = true)

@@ -23,28 +23,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TBL_PROGRESO")
+@Table(name = "tsg_usuario_rol")
 
-public class Progreso implements Serializable {
+public class UsuarioRol implements Serializable {
 
-	private static final long serialVersionUID = -3942066400466258264L;
+	private static final long serialVersionUID = -2075872038581252564L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PROGRESO")
+	@Column(name = "id_usuario_rol")
 	private int id;
 
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_inscrito", referencedColumnName = "id_inscrito")
+	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Inscrito id_inscrito;
+	private Usuario id_persona;
 
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
+	@JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Recurso id_recurso;
-
-	@Column(name = "ES_PROGRESO")
-	private int es_progreso;
+	private Rol id_rol;
 
 }

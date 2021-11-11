@@ -32,42 +32,41 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "tbl_recurso")
+@Table(name = "tbl_modulo")
 
-public class Recurso implements Serializable {
-
-	private static final long serialVersionUID = 319819275701613594L;
-
+public class Modulo implements Serializable {
+	
+	private static final long serialVersionUID = -573681505674342614L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_RECURSO")
+	@Column(name = "ID_MODULO")
 	private int id;
-
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Sesion id_sesion;
 	
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_tipo_recurso", referencedColumnName = "id_tipo_recurso")
+	@JoinColumn(name = "id_area", referencedColumnName = "id_area")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private TipoRecurso id_tipo;
+	private Area id_area;
 	
-	@Column(name = "NO_RECURSO")
+	@Column(name = "NO_MODULO")
 	private String nombre;
-
-	@Column(name = "FI_RECURSO")
-	private String file;
-
-	@Column(name = "URL_RECURSO")
-	private String url;
 	
-	//Relaciones
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_recurso")
-	@JsonIgnore
-	private List<Pregunta> pregunta = new ArrayList<>();
+	@Column(name = "DE_MODULO")
+	private String descripcion;
+
+	@Column(name = "CA_TOTAL_RECURSOS")
+	private String recursos;
 	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_recurso")
+	//RELACIONES
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
 	@JsonIgnore
-	private List<Progreso> progreso = new ArrayList<>();
+	private List<Sesion> sesion = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
+	@JsonIgnore
+	private List<Inscrito> inscrito = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_modulo")
+	@JsonIgnore
+	private List<BancoModulo> bancoModulo = new ArrayList<>();
 }

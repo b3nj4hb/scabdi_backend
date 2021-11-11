@@ -23,28 +23,31 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TBL_PROGRESO")
+@Table(name = "tbl_prueba")
 
-public class Progreso implements Serializable {
+public class Prueba implements Serializable {
 
-	private static final long serialVersionUID = -3942066400466258264L;
+	private static final long serialVersionUID = 4090963632238823268L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PROGRESO")
+	@Column(name = "id_prueba")
 	private int id;
 
-	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_inscrito", referencedColumnName = "id_inscrito")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Inscrito id_inscrito;
+	@Column(name = "no_prueba")
+	private String nombre;
 
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
+	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Recurso id_recurso;
+	private Persona id_persona;
 
-	@Column(name = "ES_PROGRESO")
-	private int es_progreso;
+	@Column(name = "de_prueba")
+	private String descripcion;
+
+	@Column(name = "fe_prueba")
+	private String fecha;
+
+	// @OneToOne(mappedBy = "TBL_PERSONA")
 
 }

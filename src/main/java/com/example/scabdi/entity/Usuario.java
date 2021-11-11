@@ -1,28 +1,59 @@
 package com.example.scabdi.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
-@Table(name = "TSG_USUARIO")
-public class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PERSONA")
-	private int id;
-	@Column(name = "US_NOMBRE")
-	private String nombre;
-	@Column(name = "PW_USUARIO")
-	private String contraseña;
+@Setter
+@Getter
+@Table(name = "tsg_usuario")
 
+public class Usuario implements Serializable{
+
+	private static final long serialVersionUID = -7299684846624197312L;
+
+	@Id
+	@Column(name = "id_persona")
+	private int id;
+	
+	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Persona id_persona;
+	
+	@Column(name = "us_nombre")
+	private String user;
+
+	@Column(name = "pw_usuario")
+	private String password;
+
+	//Relaciones
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
+	@JsonIgnore
+	private List<UsuarioRol> usuarioRol = new ArrayList<>();
+	
 }

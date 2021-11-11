@@ -1,8 +1,6 @@
 package com.example.scabdi.controller;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,36 +12,30 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.scabdi.entity.Persona;
-import com.example.scabdi.service.PersonaService;
+import com.example.scabdi.entity.Rol;
+import com.example.scabdi.serviceImpl.RolServiceImpl;
 
 @RestController
-@RequestMapping("/api/persona")
-public class PersonaController {
-
+@RequestMapping("/api/roles")
+public class RolController {
 	@Autowired
-	private PersonaService personaService;
-
-	// CREAR
-	@PostMapping("/create")
-	public ResponseEntity<Persona> save(@RequestBody Persona per) {
+	private RolServiceImpl rolService;
+	@PostMapping("/agregar")
+	public ResponseEntity<Rol> save(@RequestBody Rol rol){
 		try {
-			Persona p = personaService.create(per);
-			return new ResponseEntity<>(p, HttpStatus.CREATED);
+			Rol rl = rolService.create(rol);
+			return new ResponseEntity<>(rl, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-	// LISTAR
 	@GetMapping("/all")
-	public ResponseEntity<List<Persona>> list() {
+	public ResponseEntity<List<Rol>> getRoles(){
 		try {
-			List<Persona> list = new ArrayList<>();
-			list = personaService.readAll();
-			if (list.isEmpty()) {
+			List<Rol> list = new ArrayList<>();
+			list = rolService.readAll();
+			if(list.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(list, HttpStatus.OK);
@@ -52,49 +44,39 @@ public class PersonaController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-	// BUSCAR {ID}
-	@GetMapping("/read/{id}")
-	public ResponseEntity<Persona> search(@PathVariable("id") int id) {
-		Persona persona = personaService.read(id);
-		if (persona.getId() > 0) {
-			return new ResponseEntity<>(persona, HttpStatus.OK);
-		} else {
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Rol> getUser(@PathVariable("id") int id){
+		Rol paciente = rolService.read(id);
+			if(paciente.getId()>0) {
+				return new ResponseEntity<>(paciente, HttpStatus.OK);
+			}else {
+			
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+			} 
 	}
-
-	// ELIMINAR
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
+	public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id){
 		try {
-			personaService.delete(id);
+			rolService.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-	// ACTUALIZAR {ID}
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Persona> update(@RequestBody Persona p, @PathVariable("id") int id) {
+	public ResponseEntity<Rol> update(@RequestBody Rol rl, @PathVariable("id") int id){
 		try {
-			Persona pe = personaService.read(id);
-			if (pe.getId() > 0) {
-				pe.setNombre(p.getNombre());
-				pe.setApellido(p.getApellido());
-				pe.setDni(p.getDni());
-				pe.setCorreo(p.getCorreo());
-				pe.setTelefono(p.getTelefono());
-
-				return new ResponseEntity<>(personaService.create(pe), HttpStatus.OK);
-			} else {
+			Rol rll = rolService.read(id);
+			if(rll.getId()>0) {
+				rll.setNo_rol(rl.getNo_rol());
+				return new ResponseEntity<>(rolService.create(rll),HttpStatus.OK);
+			}else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+			}			
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 }

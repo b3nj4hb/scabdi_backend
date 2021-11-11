@@ -1,6 +1,6 @@
 package com.example.scabdi.entity;
 
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,33 +27,31 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_banco_comunal" )
+@Table(name = "tbl_pregunta")
 
-public class BancoComunal {
+public class Pregunta implements Serializable {
+
+	private static final long serialVersionUID = 6995987402715295305L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_banco_comunal")
-	public int id_bancocomunal;
-	
+	@Column(name = "id_pregunta")
+	private int id;
+
+	@Column(name = "de_pregunta")
+	private String descripcion;
+
+	@Column(name = "in_orden")
+	private String orden;
+
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_sede", referencedColumnName = "id_sede")
+	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Sede id_sede;
-	
-	@Column(name = "no_banco_comunal")
-	public String no_bancocomunal;
-	
-	@Column(name = "es_banco_comunal")
-	public int es_bancocomunal;
-	
-	//Relaciones
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_banco")
+	private Recurso id_recurso;
+
+	// Relaciones
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_pregunta")
 	@JsonIgnore
-	private List<Socio> socio = new ArrayList<>();
-	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_banco")
-	@JsonIgnore
-	private List<BancoModulo> bancoModulo = new ArrayList<>();
-	
+	private List<Respuesta> respuesta = new ArrayList<>();
+
 }

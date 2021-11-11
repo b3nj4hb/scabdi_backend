@@ -23,15 +23,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TBL_PROGRESO")
+@Table(name = "tbl_valoracion")
 
-public class Progreso implements Serializable {
+public class Valoracion implements Serializable {
 
-	private static final long serialVersionUID = -3942066400466258264L;
+	private static final long serialVersionUID = -5136116338269561288L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PROGRESO")
+	@Column(name = "id_valoracion")
 	private int id;
 
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
@@ -40,11 +40,11 @@ public class Progreso implements Serializable {
 	private Inscrito id_inscrito;
 
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_recurso", referencedColumnName = "id_recurso")
+	@JoinColumn(name = "id_sesion", referencedColumnName = "id_sesion")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Recurso id_recurso;
+	private Sesion id_sesion;
 
-	@Column(name = "ES_PROGRESO")
-	private int es_progreso;
+	@Column(name = "nu_puntuacion")
+	private String puntuacion;
 
 }

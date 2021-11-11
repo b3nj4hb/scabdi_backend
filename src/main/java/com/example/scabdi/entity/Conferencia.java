@@ -11,45 +11,45 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.OneToMany;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Setter
-@Getter
-@Table(name = "tbl_sede")
+@Table(name = "tbl_conferencia")
 
-public class Sede implements Serializable {
+public class Conferencia implements Serializable {
 
-	private static final long serialVersionUID = 750508951862051531L;
+	private static final long serialVersionUID = -6386438241193095886L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_sede")
+	@Column(name = "id_conferencia")
 	private int id;
 
-	@Column(name = "no_sede")
+	@Column(name = "no_conferencia")
 	private String nombre;
-	
-	@Column(name = "es_sede")
-	private int estado;
-	
+
+	@Column(name = "fe_inicio")
+	private String inicio;
+
+	@Column(name = "fe_fin")
+	private String fin;
+
+	@Column(name = "url_conferencia")
+	private String url;
+
 	//Relaciones
-	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_sede")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_conferencia")
 	@JsonIgnore
-	private List<BancoComunal> bancoComunal = new ArrayList<>();
-	
+	private List<Asistencia> asistencia = new ArrayList<>();
+
 }

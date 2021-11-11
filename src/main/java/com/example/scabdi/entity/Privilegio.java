@@ -29,27 +29,22 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "tbl_sede")
+@Table(name = "tsg_privilegio")
 
-public class Sede implements Serializable {
+public class Privilegio implements Serializable {
 
-	private static final long serialVersionUID = 750508951862051531L;
+	private static final long serialVersionUID = 3672608267631946326L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_sede")
+	@Column(name = "id_privilegio")
 	private int id;
 
-	@Column(name = "no_sede")
-	private String nombre;
-	
-	@Column(name = "es_sede")
-	private int estado;
+	private String no_privilegio;
 	
 	//Relaciones
 	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_sede")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_privilegio")
 	@JsonIgnore
-	private List<BancoComunal> bancoComunal = new ArrayList<>();
-	
+	private List<RolPrivilegio> rolPrivilegio = new ArrayList<>();
 }

@@ -1,13 +1,21 @@
 package com.example.scabdi.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,6 +51,17 @@ public class Persona implements Serializable {
 	@Column(name = "NU_TELEFONO")
 	private String telefono;
 
-	// @OneToOne(mappedBy = "TBL_PERSONA")
+	//Relaciones
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
+	@JsonIgnore
+	private Usuario usuario;
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
+	@JsonIgnore
+	private List<Prueba> prueba = new ArrayList<>();
+	
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
+	@JsonIgnore
+	private Socio socio;
 
 }
