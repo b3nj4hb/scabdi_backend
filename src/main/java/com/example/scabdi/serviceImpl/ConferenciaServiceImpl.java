@@ -5,30 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
-import com.example.scabdi.repository.TipoRecursoRepository;
+import com.example.scabdi.entity.Conferencia;
+import com.example.scabdi.repository.ConferenciaRepository;
+import com.example.scabdi.service.ConferenciaService;
 
 @Service
-public class TipoRecursoServiceImpl implements TipoRecursoService{
+public class ConferenciaServiceImpl implements ConferenciaService{
 
 	@Autowired
-	private TipoRecursoRepository repo;
+	private ConferenciaRepository repo;
 	
 	@Override
-	public List<TipoRecurso> readAll() {
+	public List<Conferencia> readAll() {
 		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
 
 	@Override
-	public TipoRecurso create(TipoRecurso al) {
+	public Conferencia create(Conferencia al) {
 		// TODO Auto-generated method stub
 		return repo.save(al);
 	}
 
 	@Override
-	public TipoRecurso read(int id) {
+	public Conferencia read(int id) {
 		// TODO Auto-generated method stub
 		return repo.findById(id).get();
 	}
@@ -40,10 +40,9 @@ public class TipoRecursoServiceImpl implements TipoRecursoService{
 	}
 
 	@Override
-	public TipoRecurso update(TipoRecurso al) {
+	public Conferencia update(Conferencia al) {
 		// TODO Auto-generated method stub
 		return repo.save(al);
 	}
 
-	
 }
