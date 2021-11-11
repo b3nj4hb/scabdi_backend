@@ -15,21 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
+import com.example.scabdi.entity.BancoModulo;
+import com.example.scabdi.service.BancoModuloService;
 
 @RestController
-@RequestMapping("/api/tiporecurso")
-public class TipoRecursoController {
+@RequestMapping("/api/bancomodulo")
+public class BancoModuloController {
 
 	@Autowired
-	private TipoRecursoService service;
+	private BancoModuloService service;
 
 	// CREAR
 	@PostMapping("/create")
-	public ResponseEntity<TipoRecurso> save(@RequestBody TipoRecurso us) {
+	public ResponseEntity<BancoModulo> save(@RequestBody BancoModulo us) {
 		try {
-			TipoRecurso ua = service.create(us);
+			BancoModulo ua = service.create(us);
 			return new ResponseEntity<>(ua, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -39,9 +39,9 @@ public class TipoRecursoController {
 
 	// LISTAR
 		@GetMapping("/all")
-		public ResponseEntity<List<TipoRecurso>> list() {
+		public ResponseEntity<List<BancoModulo>> list() {
 			try {
-				List<TipoRecurso> list = new ArrayList<>();
+				List<BancoModulo> list = new ArrayList<>();
 				list = service.readAll();
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -55,8 +55,8 @@ public class TipoRecursoController {
 		
 		// BUSCAR {ID}
 		@GetMapping("/read/{id}")
-		public ResponseEntity<TipoRecurso> search(@PathVariable("id") int id) {
-			TipoRecurso us = service.read(id);
+		public ResponseEntity<BancoModulo> search(@PathVariable("id") int id) {
+			BancoModulo us = service.read(id);
 			if (us.getId() > 0) {
 				return new ResponseEntity<>(us, HttpStatus.OK);
 			} else {
@@ -77,11 +77,12 @@ public class TipoRecursoController {
 		
 		// ACTUALIZAR {ID}
 		@PutMapping("/update/{id}")
-		public ResponseEntity<TipoRecurso> update(@RequestBody TipoRecurso u, @PathVariable("id") int id) {
+		public ResponseEntity<BancoModulo> update(@RequestBody BancoModulo u, @PathVariable("id") int id) {
 			try {
-				TipoRecurso us = service.read(id);
+				BancoModulo us = service.read(id);
 				if (us.getId() > 0) {
-					us.setNo_tipo_recurso(u.getNo_tipo_recurso());
+					us.setId_banco(u.getId_banco());
+					us.setId_modulo(u.getId_modulo());
 
 					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 				} else {

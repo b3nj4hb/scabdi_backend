@@ -15,21 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
+import com.example.scabdi.entity.Sesion;
+import com.example.scabdi.service.SesionService;
 
 @RestController
-@RequestMapping("/api/tiporecurso")
-public class TipoRecursoController {
+@RequestMapping("/api/sesion")
+public class SesionController {
 
 	@Autowired
-	private TipoRecursoService service;
+	private SesionService service;
 
 	// CREAR
 	@PostMapping("/create")
-	public ResponseEntity<TipoRecurso> save(@RequestBody TipoRecurso us) {
+	public ResponseEntity<Sesion> save(@RequestBody Sesion us) {
 		try {
-			TipoRecurso ua = service.create(us);
+			Sesion ua = service.create(us);
 			return new ResponseEntity<>(ua, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -39,9 +39,9 @@ public class TipoRecursoController {
 
 	// LISTAR
 		@GetMapping("/all")
-		public ResponseEntity<List<TipoRecurso>> list() {
+		public ResponseEntity<List<Sesion>> list() {
 			try {
-				List<TipoRecurso> list = new ArrayList<>();
+				List<Sesion> list = new ArrayList<>();
 				list = service.readAll();
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -55,8 +55,8 @@ public class TipoRecursoController {
 		
 		// BUSCAR {ID}
 		@GetMapping("/read/{id}")
-		public ResponseEntity<TipoRecurso> search(@PathVariable("id") int id) {
-			TipoRecurso us = service.read(id);
+		public ResponseEntity<Sesion> search(@PathVariable("id") int id) {
+			Sesion us = service.read(id);
 			if (us.getId() > 0) {
 				return new ResponseEntity<>(us, HttpStatus.OK);
 			} else {
@@ -77,11 +77,14 @@ public class TipoRecursoController {
 		
 		// ACTUALIZAR {ID}
 		@PutMapping("/update/{id}")
-		public ResponseEntity<TipoRecurso> update(@RequestBody TipoRecurso u, @PathVariable("id") int id) {
+		public ResponseEntity<Sesion> update(@RequestBody Sesion u, @PathVariable("id") int id) {
 			try {
-				TipoRecurso us = service.read(id);
+				Sesion us = service.read(id);
 				if (us.getId() > 0) {
-					us.setNo_tipo_recurso(u.getNo_tipo_recurso());
+					us.setNo_sesion(u.getNo_sesion());
+					us.setId_modulo(u.getId_modulo());
+					us.setFe_inicio_sesion(u.getFe_inicio_sesion());
+					us.setFe_fin_sesion(u.getFe_fin_sesion());
 
 					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 				} else {

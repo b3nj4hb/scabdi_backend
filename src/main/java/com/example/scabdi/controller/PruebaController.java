@@ -15,21 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
+import com.example.scabdi.entity.Prueba;
+import com.example.scabdi.service.PruebaService;
 
 @RestController
-@RequestMapping("/api/tiporecurso")
-public class TipoRecursoController {
+@RequestMapping("/api/prueba")
+public class PruebaController {
 
 	@Autowired
-	private TipoRecursoService service;
+	private PruebaService service;
 
 	// CREAR
 	@PostMapping("/create")
-	public ResponseEntity<TipoRecurso> save(@RequestBody TipoRecurso us) {
+	public ResponseEntity<Prueba> save(@RequestBody Prueba us) {
 		try {
-			TipoRecurso ua = service.create(us);
+			Prueba ua = service.create(us);
 			return new ResponseEntity<>(ua, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -39,9 +39,9 @@ public class TipoRecursoController {
 
 	// LISTAR
 		@GetMapping("/all")
-		public ResponseEntity<List<TipoRecurso>> list() {
+		public ResponseEntity<List<Prueba>> list() {
 			try {
-				List<TipoRecurso> list = new ArrayList<>();
+				List<Prueba> list = new ArrayList<>();
 				list = service.readAll();
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -55,8 +55,8 @@ public class TipoRecursoController {
 		
 		// BUSCAR {ID}
 		@GetMapping("/read/{id}")
-		public ResponseEntity<TipoRecurso> search(@PathVariable("id") int id) {
-			TipoRecurso us = service.read(id);
+		public ResponseEntity<Prueba> search(@PathVariable("id") int id) {
+			Prueba us = service.read(id);
 			if (us.getId() > 0) {
 				return new ResponseEntity<>(us, HttpStatus.OK);
 			} else {
@@ -77,11 +77,14 @@ public class TipoRecursoController {
 		
 		// ACTUALIZAR {ID}
 		@PutMapping("/update/{id}")
-		public ResponseEntity<TipoRecurso> update(@RequestBody TipoRecurso u, @PathVariable("id") int id) {
+		public ResponseEntity<Prueba> update(@RequestBody Prueba u, @PathVariable("id") int id) {
 			try {
-				TipoRecurso us = service.read(id);
+				Prueba us = service.read(id);
 				if (us.getId() > 0) {
-					us.setNo_tipo_recurso(u.getNo_tipo_recurso());
+					us.setNombre(u.getNombre());
+					us.setId_persona(u.getId_persona());
+					us.setDescripcion(u.getDescripcion());
+					us.setFecha(u.getFecha());
 
 					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 				} else {

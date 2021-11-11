@@ -23,13 +23,13 @@ import com.example.scabdi.service.UsuarioService;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioService usuarioService;
+	private UsuarioService service;
 
 	// CREAR
 	@PostMapping("/create")
 	public ResponseEntity<Usuario> save(@RequestBody Usuario us) {
 		try {
-			Usuario ua = usuarioService.create(us);
+			Usuario ua = service.create(us);
 			return new ResponseEntity<>(ua, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -42,7 +42,7 @@ public class UsuarioController {
 		public ResponseEntity<List<Usuario>> list() {
 			try {
 				List<Usuario> list = new ArrayList<>();
-				list = usuarioService.readAll();
+				list = service.readAll();
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 				}
@@ -56,9 +56,9 @@ public class UsuarioController {
 		// BUSCAR {ID}
 		@GetMapping("/read/{id}")
 		public ResponseEntity<Usuario> search(@PathVariable("id") int id) {
-			Usuario recurso = usuarioService.read(id);
-			if (recurso.getId() > 0) {
-				return new ResponseEntity<>(recurso, HttpStatus.OK);
+			Usuario us = service.read(id);
+			if (us.getId() > 0) {
+				return new ResponseEntity<>(us, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -68,7 +68,7 @@ public class UsuarioController {
 		@DeleteMapping("/delete/{id}")
 		public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
 			try {
-				usuarioService.delete(id);
+				service.delete(id);
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			} catch (Exception e) {
 				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -79,13 +79,13 @@ public class UsuarioController {
 		@PutMapping("/update/{id}")
 		public ResponseEntity<Usuario> update(@RequestBody Usuario u, @PathVariable("id") int id) {
 			try {
-				Usuario us = usuarioService.read(id);
+				Usuario us = service.read(id);
 				if (us.getId() > 0) {
 					us.setId_persona(u.getId_persona());
 					us.setUser(u.getUser());
 					us.setPassword(u.getPassword());
 
-					return new ResponseEntity<>(usuarioService.create(us), HttpStatus.OK);
+					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 				} else {
 					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 				}
