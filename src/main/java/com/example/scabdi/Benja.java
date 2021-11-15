@@ -32,15 +32,15 @@ public class Benja implements CommandLineRunner {
 	// @SuppressWarnings("deprecation")
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		// ----------- PERSONA -----------
 
 		// LISTAR PERSONA
-		
-		  List<Persona> per = personaRepository.listar(); for (int i = 0; i <
-		  per.size(); i++) { System.out.println( per.get(i).getId() + " - " +
-		  per.get(i).getNombre() + " - " + per.get(i).getApellido() + " - "); }
-		 
+		/*
+		 * List<Persona> per = personaRepository.listar(); for (int i = 0; i <
+		 * per.size(); i++) { System.out.println( per.get(i).getId() + " - " +
+		 * per.get(i).getNombre() + " - " + per.get(i).getApellido() + " - "); }
+		 */
 		// BUSCAR PERSONA
 		/*
 		 * Persona sona = personaRepository.buscar(6).get();
@@ -121,7 +121,7 @@ public class Benja implements CommandLineRunner {
 
 		// ELIMINAR ROL PRIVILEGIO
 		// rpRepository.eliminar(11);
-			
+
 		// ACTUALIZAR ROL PRIVILEGIO
 		// rpRepository.actualizar(11, 2, 2);
 

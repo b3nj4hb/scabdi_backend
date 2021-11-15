@@ -1,6 +1,8 @@
 package com.example.scabdi.controller;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +14,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
+
+import com.example.scabdi.entity.BancoComunal;
+import com.example.scabdi.service.BancoComunalService;
 
 @RestController
-@RequestMapping("/api/tiporecurso")
-public class TipoRecursoController {
+@RequestMapping("/api/bancocomunal")
+public class BancoComunalController {
 
 	@Autowired
-	private TipoRecursoService service;
+	private BancoComunalService service;
 
 	// CREAR
 	@PostMapping("/create")
-	public ResponseEntity<TipoRecurso> save(@RequestBody TipoRecurso us) {
+	public ResponseEntity<BancoComunal> save(@RequestBody BancoComunal us) {
 		try {
-			TipoRecurso ua = service.create(us);
+			BancoComunal ua = service.create(us);
 			return new ResponseEntity<>(ua, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -36,9 +39,9 @@ public class TipoRecursoController {
 
 	// LISTAR
 		@GetMapping("/all")
-		public ResponseEntity<List<TipoRecurso>> list() {
+		public ResponseEntity<List<BancoComunal>> list() {
 			try {
-				List<TipoRecurso> list = new ArrayList<>();
+				List<BancoComunal> list = new ArrayList<>();
 				list = service.readAll();
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -52,9 +55,9 @@ public class TipoRecursoController {
 		
 		// BUSCAR {ID}
 		@GetMapping("/read/{id}")
-		public ResponseEntity<TipoRecurso> search(@PathVariable("id") int id) {
-			TipoRecurso us = service.read(id);
-			if (us.getId() > 0) {
+		public ResponseEntity<BancoComunal> search(@PathVariable("id") int id) {
+			BancoComunal us = service.read(id);
+			if (us.getId_bancocomunal() > 0) {
 				return new ResponseEntity<>(us, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -74,11 +77,13 @@ public class TipoRecursoController {
 		
 		// ACTUALIZAR {ID}
 		@PutMapping("/update/{id}")
-		public ResponseEntity<TipoRecurso> update(@RequestBody TipoRecurso u, @PathVariable("id") int id) {
+		public ResponseEntity<BancoComunal> update(@RequestBody BancoComunal u, @PathVariable("id") int id) {
 			try {
-				TipoRecurso us = service.read(id);
-				if (us.getId() > 0) {
-					us.setNo_tipo_recurso(u.getNo_tipo_recurso());
+				BancoComunal us = service.read(id);
+				if (us.getId_bancocomunal() > 0) {
+					us.setId_sede(u.getId_sede());
+					us.setNo_bancocomunal(u.getNo_bancocomunal());
+					us.setEs_bancocomunal(u.getEs_bancocomunal());
 
 					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 				} else {

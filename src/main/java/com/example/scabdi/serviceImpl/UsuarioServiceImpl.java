@@ -5,30 +5,30 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
-import com.example.scabdi.repository.TipoRecursoRepository;
+import com.example.scabdi.entity.Usuario;
+import com.example.scabdi.repository.UsuarioRepository;
+import com.example.scabdi.service.UsuarioService;
 
 @Service
-public class TipoRecursoServiceImpl implements TipoRecursoService{
+public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired
-	private TipoRecursoRepository repo;
+	private UsuarioRepository repo;
 	
 	@Override
-	public List<TipoRecurso> readAll() {
+	public List<Usuario> readAll() {
 		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
-
+	
 	@Override
-	public TipoRecurso create(TipoRecurso al) {
+	public Usuario create(Usuario al) {
 		// TODO Auto-generated method stub
 		return repo.save(al);
 	}
 
 	@Override
-	public TipoRecurso read(int id) {
+	public Usuario read(int id) {
 		// TODO Auto-generated method stub
 		return repo.findById(id).get();
 	}
@@ -40,10 +40,9 @@ public class TipoRecursoServiceImpl implements TipoRecursoService{
 	}
 
 	@Override
-	public TipoRecurso update(TipoRecurso al) {
+	public Usuario update(Usuario al) {
 		// TODO Auto-generated method stub
 		return repo.save(al);
 	}
 
-	
 }

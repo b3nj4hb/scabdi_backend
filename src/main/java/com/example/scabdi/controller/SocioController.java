@@ -1,6 +1,8 @@
 package com.example.scabdi.controller;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +14,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.scabdi.entity.TipoRecurso;
-import com.example.scabdi.service.TipoRecursoService;
+
+import com.example.scabdi.entity.Socio;
+import com.example.scabdi.service.SocioService;
 
 @RestController
-@RequestMapping("/api/tiporecurso")
-public class TipoRecursoController {
+@RequestMapping("/api/socio")
+public class SocioController {
 
 	@Autowired
-	private TipoRecursoService service;
+	private SocioService service;
 
 	// CREAR
 	@PostMapping("/create")
-	public ResponseEntity<TipoRecurso> save(@RequestBody TipoRecurso us) {
+	public ResponseEntity<Socio> save(@RequestBody Socio us) {
 		try {
-			TipoRecurso ua = service.create(us);
+			Socio ua = service.create(us);
 			return new ResponseEntity<>(ua, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -36,9 +39,9 @@ public class TipoRecursoController {
 
 	// LISTAR
 		@GetMapping("/all")
-		public ResponseEntity<List<TipoRecurso>> list() {
+		public ResponseEntity<List<Socio>> list() {
 			try {
-				List<TipoRecurso> list = new ArrayList<>();
+				List<Socio> list = new ArrayList<>();
 				list = service.readAll();
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -52,8 +55,8 @@ public class TipoRecursoController {
 		
 		// BUSCAR {ID}
 		@GetMapping("/read/{id}")
-		public ResponseEntity<TipoRecurso> search(@PathVariable("id") int id) {
-			TipoRecurso us = service.read(id);
+		public ResponseEntity<Socio> search(@PathVariable("id") int id) {
+			Socio us = service.read(id);
 			if (us.getId() > 0) {
 				return new ResponseEntity<>(us, HttpStatus.OK);
 			} else {
@@ -74,11 +77,12 @@ public class TipoRecursoController {
 		
 		// ACTUALIZAR {ID}
 		@PutMapping("/update/{id}")
-		public ResponseEntity<TipoRecurso> update(@RequestBody TipoRecurso u, @PathVariable("id") int id) {
+		public ResponseEntity<Socio> update(@RequestBody Socio u, @PathVariable("id") int id) {
 			try {
-				TipoRecurso us = service.read(id);
+				Socio us = service.read(id);
 				if (us.getId() > 0) {
-					us.setNo_tipo_recurso(u.getNo_tipo_recurso());
+					us.setId_persona(u.getId_persona());
+					us.setId_banco(u.getId_banco());
 
 					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 				} else {

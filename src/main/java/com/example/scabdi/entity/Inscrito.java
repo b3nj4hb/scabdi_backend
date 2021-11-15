@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tbl_inscito")
+@Table(name = "tbl_inscrito")
 
 public class Inscrito implements Serializable {
 
@@ -51,7 +51,7 @@ public class Inscrito implements Serializable {
 	@Column(name = "fe_inscripcion")
 	private String fecha;
 
-	@Column(name = "ca_recursos")
+	@Column(name = "ca_recursos_vistos")
 	private String recursos;
 
 	// Relaciones
