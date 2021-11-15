@@ -9,17 +9,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.scabdi.entity.BancoModulo;
-import com.example.scabdi.entity.Banco_Modulo;
+
 
 @Repository
 public interface BancoModuloRepository extends JpaRepository<BancoModulo, Integer>{
 	// LISTAR
 		@Query(value = "{call SP_LISTA_TBL_BANCO_MODULO()}", nativeQuery = true)
-		List<Banco_Modulo> listabanco_modulos();
+		List<BancoModulo> listabanco_modulos();
 
 		// BUSCAR
 		@Query(value = "{call SP_BUSCAR_TBL_BANCO_MODULO(:p_nID_BANCO_MODULO)}", nativeQuery = true)
-		Optional<Banco_Modulo> buscar(@Param("p_nID_BANCO_MODULO") int p_nID_BANCO_MODULO);
+		Optional<BancoModulo> buscar(@Param("p_nID_BANCO_MODULO") int p_nID_BANCO_MODULO);
 
 		// INSERTAR
 		@Query(value = "{call SP_INS_TBL_BANCO_MODULO(:p_nID_BANCO_COMUNAL,:p_nID_MODULO, @p_nID_BANCO_MODULO)}", nativeQuery = true)
