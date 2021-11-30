@@ -23,8 +23,6 @@ public interface PrivilegioRepository extends JpaRepository<Privilegio, Integer>
 		    @Query(value = "{call SP_INS_TSG_PRIVILEGIO (:p_vNO_PRIVILEGIO, @p_nID_PRIVILEGIO)}", nativeQuery = true)
 		    String insertar(@Param("p_vNO_PRIVILEGIO") String p_vNO_PRIVILEGIO);
 		    // ELIMINAR
-		    
-		    
 		 	@Query(value = "{call SP_DEL_TSG_PRIVILEGIO(:p_nID_PRIVILEGIO)}", nativeQuery = true)
 		 	String eliminar(@Param("p_nID_PRIVILEGIO") int p_nID_PRIVILEGIO);
 		    // ACTULALIZAR
