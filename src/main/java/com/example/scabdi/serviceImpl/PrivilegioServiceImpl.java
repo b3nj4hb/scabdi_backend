@@ -1,6 +1,7 @@
 package com.example.scabdi.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,11 @@ public class PrivilegioServiceImpl implements PrivilegioService{
 		// TODO Auto-generated method stub
 		return repo.save(al);
 	}
+
+	/*@Override
+	public List<Map<String, Object>> listarprivilegios() {
+		// TODO Auto-generated method stub
+		return repo.listarprivilegios();
+	}*/
 
 }

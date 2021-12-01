@@ -1,6 +1,7 @@
 package com.example.scabdi.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.scabdi.entity.Sesion;
 
@@ -15,5 +16,7 @@ public interface SesionService {
 	void delete(int id);
 
 	Sesion update(Sesion al);
+	
+	List<Map<String,Object>> listarecurso(int id);
 	
 }
