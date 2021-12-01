@@ -44,7 +44,7 @@ public class Area implements Serializable{
 	private String nombre;
 	
 	// RELACIONES
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_area")
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "area")
 	@JsonIgnore
 	private List<Modulo> modulo = new ArrayList<>();
 }

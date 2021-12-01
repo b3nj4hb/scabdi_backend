@@ -2,10 +2,12 @@ package com.example.scabdi.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.scabdi.entity.Modulo;
 import com.example.scabdi.service.ModuloService;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/modulo")
 public class ModuloController {
@@ -81,7 +83,7 @@ public class ModuloController {
 			try {
 				Modulo us = service.read(id);
 				if (us.getId() > 0) {
-					us.setId_area(u.getId_area());
+					us.setArea(u.getArea());
 					us.setNombre(u.getNombre());
 					us.setDescripcion(u.getDescripcion());
 					us.setRecursos(u.getRecursos());
@@ -95,4 +97,20 @@ public class ModuloController {
 				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
+		
+		// LISTAR
+				@GetMapping("/modulosporbanco")
+				public ResponseEntity<List<Map<String,Object>>> modulosporbanco() {
+					try {
+						List<Map<String,Object>> list = new ArrayList<>();
+						list = service.modulosporbanco();
+						if (list.isEmpty()) {
+							return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+						}
+						return new ResponseEntity<>(list, HttpStatus.OK);
+					} catch (Exception e) {
+						// TODO: handle exception
+						return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+					}
+				}
 }

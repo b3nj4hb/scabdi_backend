@@ -46,7 +46,7 @@ public class Modulo implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY , cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_area", referencedColumnName = "id_area")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Area id_area;
+	private Area area;
 	
 	@Column(name = "NO_MODULO")
 	private String nombre;

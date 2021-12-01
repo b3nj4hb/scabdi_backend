@@ -1,6 +1,7 @@
 package com.example.scabdi.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.scabdi.entity.Conferencia;
 
@@ -15,5 +16,5 @@ public interface ConferenciaService {
 	void delete(int id);
 
 	Conferencia update(Conferencia al);
-	
+	List<Map<String,Object>> digi(int id);
 }

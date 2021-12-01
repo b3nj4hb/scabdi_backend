@@ -1,6 +1,7 @@
 package com.example.scabdi.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,12 @@ public class ModuloServiceImpl implements ModuloService{
 	public Modulo update(Modulo al) {
 		// TODO Auto-generated method stub
 		return repo.save(al);
+	}
+
+	@Override
+	public List<Map<String, Object>> modulosporbanco() {
+		// TODO Auto-generated method stub
+		return repo.modulosporbanco();
 	}
 
 }

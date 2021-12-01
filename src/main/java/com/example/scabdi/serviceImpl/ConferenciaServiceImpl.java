@@ -1,6 +1,7 @@
 package com.example.scabdi.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,12 @@ public class ConferenciaServiceImpl implements ConferenciaService{
 	public Conferencia update(Conferencia al) {
 		// TODO Auto-generated method stub
 		return repo.save(al);
+	}
+
+	@Override
+	public List<Map<String, Object>> digi(int id) {
+		// TODO Auto-generated method stub
+		return repo.digi(id);
 	}
 
 }

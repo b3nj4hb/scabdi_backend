@@ -1,5 +1,6 @@
 package com.example.scabdi.service;
 import java.util.List;
+import java.util.Map;
 
 import com.example.scabdi.entity.Modulo;
 
@@ -9,4 +10,5 @@ public interface ModuloService {
 	Modulo read(int id);
 	void delete(int id);
 	Modulo update(Modulo mo);
+	List<Map<String,Object>> modulosporbanco();
 }
