@@ -11,7 +11,7 @@ import com.example.scabdi.entity.Sesion;
 
 @Repository
 public interface SesionRepository extends JpaRepository<Sesion, Integer>{
-	@Query(value = "select r.no_recurso, s.no_sesion from tbl_recurso r\r\n"
+	@Query(value = "select r.no_recurso, s.no_sesion, r.url_recurso from tbl_recurso r\r\n"
 			+ "	join tbl_sesion s on r.id_sesion = s.id_sesion\r\n"
 			+ "	where r.id_sesion = ?", nativeQuery = true)
  	List<Map<String,Object>> listarecurso(int id);

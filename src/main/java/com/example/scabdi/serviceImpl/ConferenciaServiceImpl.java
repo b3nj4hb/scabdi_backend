@@ -52,4 +52,10 @@ public class ConferenciaServiceImpl implements ConferenciaService{
 		return repo.digi(id);
 	}
 
+	@Override
+	public List<Map<String, Object>> seminarioactual() {
+		// TODO Auto-generated method stub
+		return repo.seminarioactual();
+	}
+
 }

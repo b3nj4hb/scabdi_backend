@@ -113,4 +113,19 @@ public class ConferenciaController {
 				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
+		// LISTAR
+				@GetMapping("/conferenciadehoy")
+				public ResponseEntity<List<Map<String,Object>>> digi() {
+					try {
+						List<Map<String,Object>> list = service.seminarioactual();
+						list = service.seminarioactual();
+						if (list.isEmpty()) {
+							return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+						}
+						return new ResponseEntity<>(list, HttpStatus.OK);
+					} catch (Exception e) {
+						// TODO: handle exception
+						return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+					}
+				}
 }
