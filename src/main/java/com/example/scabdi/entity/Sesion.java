@@ -1,4 +1,4 @@
-package com.example.scabdi.entity;
+	package com.example.scabdi.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

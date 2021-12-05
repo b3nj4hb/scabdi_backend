@@ -17,4 +17,5 @@ public interface ConferenciaService {
 
 	Conferencia update(Conferencia al);
 	List<Map<String,Object>> digi(int id);
+	List<Map<String,Object>> seminarioactual();
 }
