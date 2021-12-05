@@ -37,7 +37,5 @@ public interface RecursoRepository extends JpaRepository<Recurso, Integer>{
 	String actualizar(@Param("P_ID_RECURSO") int P_ID_RECURSO, @Param("P_ID_SESION") int P_ID_SESION,
 			@Param("P_ID_TIPO_RECURSO") int P_ID_TIPO_RECURSO, @Param("P_NO_RECURSO") String P_NO_RECURSO,
 			@Param("P_FI_RECURSO") String P_FI_RECURSO, @Param("P_URL_RECURSO") String P_URL_RECURSO);
-	
-	
-	
+		
 }
