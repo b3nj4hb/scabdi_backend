@@ -46,14 +46,22 @@ public class Usuario implements Serializable{
 	private Persona id_persona;
 	
 	@Column(name = "us_nombre")
-	private String user;
+	private String username;
 
 	@Column(name = "pw_usuario")
 	private String password;
+	
+	@Column(name = "es_usuario")
+	private boolean estado;
+	
 
 	//Relaciones
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "id_persona")
 	@JsonIgnore
 	private List<UsuarioRol> usuarioRol = new ArrayList<>();
+	
+	public boolean getEstado() {
+		return this.estado;
+	}
 	
 }

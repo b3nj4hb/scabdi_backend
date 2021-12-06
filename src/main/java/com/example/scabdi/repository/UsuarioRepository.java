@@ -7,5 +7,5 @@ import com.example.scabdi.entity.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-
+	public Usuario findByUsername(String username);
 }
