@@ -12,7 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.example.scabdi.entity.*;
 
 import com.example.scabdi.repository.*;
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class Benja implements CommandLineRunner {
 
@@ -26,13 +28,17 @@ public class Benja implements CommandLineRunner {
 	private RolPrivilegioRepository rpRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringJpa2Application.class, args);
-	}
+		
+		SpringApplication.run(Benja.class, args);
 
+        System.out.println(bCryptPasswordEncoder.encode("dl32@123").toString()); 
+	}
+	static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    
 	// @SuppressWarnings("deprecation")
 	@Override
 	public void run(String... args) throws Exception {
-
+		 
 		// ----------- PERSONA -----------
 
 		// LISTAR PERSONA

@@ -17,6 +17,10 @@ public interface SesionService {
 
 	Sesion update(Sesion al);
 	
+	List<Map<String, Object>> listarsesion();
+	
+	List<Map<String, Object>> listarrecurso(int id);
+	
 	List<Map<String,Object>> listarecurso(int id);
 	
 }

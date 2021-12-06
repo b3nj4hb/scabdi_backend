@@ -82,7 +82,7 @@ public class UsuarioController {
 				Usuario us = service.read(id);
 				if (us.getId() > 0) {
 					us.setId_persona(u.getId_persona());
-					us.setUser(u.getUser());
+					us.setUsername(u.getUsername());
 					us.setPassword(u.getPassword());
 
 					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
