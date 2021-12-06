@@ -1,6 +1,7 @@
 package com.example.scabdi.repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -37,4 +38,8 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer>{
 	String actualizar(@Param("P_ID_PERSONA") int P_ID_PERSONA, @Param("P_NO_PERSONA") String P_NO_PERSONA,
 			@Param("P_AP_PERSONA") String P_AP_PERSONA, @Param("P_NU_DNI") String P_NU_DNI,
 			@Param("P_EM_CORREO") String P_EM_CORREO, @Param("P_NU_TELEFONO") String P_NU_TELEFONO);
+	
+	// Listar Nombre persona
+		@Query(value = "select p.id_persona id, concat(p.no_persona, ' ',p.ap_persona)nombre from tbl_persona p", nativeQuery = true)
+		List<Map<String, Object>> listarpersona();
 }

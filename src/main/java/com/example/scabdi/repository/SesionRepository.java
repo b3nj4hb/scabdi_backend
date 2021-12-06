@@ -23,4 +23,9 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer>{
 			+ "join tbl_tipo_recurso tr on r.id_tipo_recurso = tr.id_tipo_recurso\r\n"
 			+ "where id_sesion = ?", nativeQuery = true)
 	List<Map<String, Object>> listarrecurso(int id);
+	
+	@Query(value = "select r.no_recurso, s.no_sesion, r.url_recurso from tbl_recurso r\r\n"
+			+ "	join tbl_sesion s on r.id_sesion = s.id_sesion\r\n"
+			+ "	where r.id_sesion = ?", nativeQuery = true)
+ 	List<Map<String,Object>> listarecurso(int id);
 }

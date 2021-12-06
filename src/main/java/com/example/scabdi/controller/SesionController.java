@@ -99,10 +99,25 @@ public class SesionController {
 		}
 		
 		@GetMapping("/recursos/{id}")
-		public ResponseEntity<List<Map<String,Object>>> listarecurso(@PathVariable("id")int id) {
+		public ResponseEntity<List<Map<String,Object>>> listarrecurso(@PathVariable("id")int id) {
 			try {
 				List<Map<String,Object>> list = service.listarrecurso(id);
 				list = service.listarrecurso(id);
+				if (list.isEmpty()) {
+					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				}
+				return new ResponseEntity<>(list, HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+		
+		@GetMapping("/listarecursos/{id}")
+		public ResponseEntity<List<Map<String,Object>>> listarecurso(@PathVariable("id")int id) {
+			try {
+				List<Map<String,Object>> list = service.listarecurso(id);
+				list = service.listarecurso(id);
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 				}

@@ -2,6 +2,7 @@ package com.example.scabdi.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -93,6 +94,22 @@ public class PersonaController {
 			}
 
 		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	// reporte persona
+	@GetMapping("/listarpersona")
+	public ResponseEntity<List<Map<String, Object>>> listarpersona() {
+		try {
+			List<Map<String, Object>> list = new ArrayList<>();
+			list = personaService.listarpersona();
+			if (list.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

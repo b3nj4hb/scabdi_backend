@@ -58,4 +58,10 @@ public class SesionServiceImpl implements SesionService{
 		return repo.listarsesion();
 	}
 
+	@Override
+	public List<Map<String, Object>> listarecurso(int id) {
+		// TODO Auto-generated method stub
+		return repo.listarecurso(id);
+	}
+
 }
