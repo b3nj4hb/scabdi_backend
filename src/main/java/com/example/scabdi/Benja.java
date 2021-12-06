@@ -31,7 +31,7 @@ public class Benja implements CommandLineRunner {
 		
 		SpringApplication.run(Benja.class, args);
 
-        System.out.println(bCryptPasswordEncoder.encode("123").toString()); 
+        System.out.println(bCryptPasswordEncoder.encode("dl32@123").toString()); 
 	}
 	static BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     

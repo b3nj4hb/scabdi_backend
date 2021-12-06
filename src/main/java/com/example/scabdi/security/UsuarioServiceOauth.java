@@ -6,7 +6,6 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -19,8 +18,6 @@ import com.example.scabdi.entity.Usuario;
 import com.example.scabdi.repository.UsuarioRepository;
 import com.example.scabdi.repository.RolRepository;
 import com.example.scabdi.entity.Rol;
-
-@SpringBootApplication
 @Service
 public class UsuarioServiceOauth implements UserDetailsService{
     @Autowired
@@ -39,7 +36,7 @@ public class UsuarioServiceOauth implements UserDetailsService{
 		
 		for (int i=0;i<roles.size(); i++) {
 			System.out.println();
-			authorities.add(new SimpleGrantedAuthority(roles.get(i).getNo_rol()));
+			authorities.add(new SimpleGrantedAuthority(roles.get(i).no_rol));
 			
 		}
 		
