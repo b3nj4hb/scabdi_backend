@@ -16,9 +16,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-/*
 @CrossOrigin(origins = "*")
-*/
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
@@ -32,9 +30,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(Arrays.asList("https://scabdi.herokuapp.com/"));
-		config.setAllowedOrigins(Arrays.asList("https://scabdi-168f3.web.app/"));
-		config.setAllowedOrigins(Arrays.asList("http://localhost:4200/"));
+		config.setAllowedOrigins(Arrays.asList("https://scabdi.herokuapp.com"));
+		config.setAllowedOrigins(Arrays.asList("https://scabdi-168f3.web.app"));
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
 		config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
 		config.setAllowCredentials(true);
 		config.setAllowedHeaders(Arrays.asList("Content-Type","Authorization"));
