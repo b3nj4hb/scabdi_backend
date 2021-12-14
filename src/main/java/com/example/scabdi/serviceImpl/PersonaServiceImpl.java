@@ -47,9 +47,9 @@ public class PersonaServiceImpl implements PersonaService{
 	}
 
 	@Override
-	public List<Map<String, Object>> listarpersona() {
+	public List<Map<String, Object>> listarpersona(int id) {
 		// TODO Auto-generated method stub
-		return personaRepository.listarpersona();
+		return personaRepository.listarpersona(id);
 	}
 
 	

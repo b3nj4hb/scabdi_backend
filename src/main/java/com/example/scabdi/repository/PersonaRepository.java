@@ -40,6 +40,6 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer>{
 			@Param("P_EM_CORREO") String P_EM_CORREO, @Param("P_NU_TELEFONO") String P_NU_TELEFONO);
 	
 	// Listar Nombre persona
-		@Query(value = "select p.id_persona id, concat(p.no_persona, ' ',p.ap_persona)nombre from tbl_persona p", nativeQuery = true)
-		List<Map<String, Object>> listarpersona();
+		@Query(value = "{CALL SP_AVANCE_SOCIO(:P_ID)}", nativeQuery = true)
+		List<Map<String, Object>> listarpersona(@Param("P_ID") int id);
 }

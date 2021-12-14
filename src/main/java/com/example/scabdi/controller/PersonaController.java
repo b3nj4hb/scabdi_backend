@@ -100,10 +100,10 @@ public class PersonaController {
 	
 	// reporte persona
 	@GetMapping("/listarpersona")
-	public ResponseEntity<List<Map<String, Object>>> listarpersona() {
+	public ResponseEntity<List<Map<String, Object>>> listarpersona(@PathVariable("id") int id) {
 		try {
 			List<Map<String, Object>> list = new ArrayList<>();
-			list = personaService.listarpersona();
+			list = personaService.listarpersona(id);
 			if (list.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
