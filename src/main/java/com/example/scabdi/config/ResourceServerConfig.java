@@ -33,6 +33,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowedOrigins(Arrays.asList("https://scabdi.herokuapp.com"));
 		config.setAllowedOrigins(Arrays.asList("https://scabdi-168f3.web.app/"));
+		config.setAllowedOrigins(Arrays.asList("http://localhost:4200/"));
 		config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
 		config.setAllowCredentials(true);
 		config.setAllowedHeaders(Arrays.asList("Content-Type","Authorization"));
