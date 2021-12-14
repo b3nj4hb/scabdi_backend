@@ -31,7 +31,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowedOrigins(Arrays.asList("https://scabdi-168f3.web.app"))
+		config.setAllowedOrigins(Arrays.asList("https://scabdi-168f3.web.app"));
 		/*
 		config.setAllowedOrigins(Arrays.asList("https://scabdi.herokuapp.com"));
 		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
