@@ -28,8 +28,7 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 	List<Map<String, Object>> listarecurso(int id);
 
 	// manda id sesion
-	@Query(value = "select * from tbl_persona;\r\n"
-			+ "select concat(tp.NO_PERSONA,', ',tp.AP_PERSONA)persona, ts3.NO_SESION sesion, \r\n"
+	@Query(value = "select concat(tp.NO_PERSONA,', ',tp.AP_PERSONA)persona, ts3.NO_SESION sesion, \r\n"
 			+ "ts3.FE_INICIO_SESION inicio, ts3.FE_FIN_SESION fin, ts3.ID_SESION idsesion,\r\n"
 			+ "tm.NO_MODULO, ts2.NO_SEDE\r\n"
 			+ "from tbl_banco_comunal tbc \r\n"
