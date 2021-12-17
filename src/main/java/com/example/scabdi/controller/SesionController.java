@@ -159,4 +159,20 @@ public class SesionController {
 				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
+		
+		// ID PERSONA, RECIVE ID USUARIO {ID}
+		@GetMapping("/sesionactiva/{id}")
+		public ResponseEntity<List<Map<String,Object>>> idpersona(@PathVariable("id")int id) {
+			try {
+				List<Map<String,Object>> list = service.idpersona(id);
+				list = service.idpersona(id);
+				if (list.isEmpty()) {
+					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				}
+				return new ResponseEntity<>(list, HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
 }

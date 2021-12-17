@@ -25,4 +25,6 @@ public interface SesionService {
 	
 	List<Map<String, Object>> sesionactiva(int id);
 	
+	List<Map<String, Object>> idpersona(int id);
+	
 }

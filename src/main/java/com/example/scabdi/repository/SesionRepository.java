@@ -43,4 +43,10 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 			+ "and ts3.FE_FIN_SESION <= date_add(now(),interval 1 month)\r\n"
 			+ "order by FE_INICIO_SESION desc limit 1", nativeQuery = true)
 	List<Map<String, Object>> sesionactiva(int id);
+	
+	//devuelve id persona
+	@Query(value = "select tp.ID_PERSONA idpersona from tsg_usuario tu\r\n"
+			+ "join tbl_persona tp on tu.ID_PERSONA = tp.ID_PERSONA \r\n"
+			+ "where tu.ID_PERSONA = ?", nativeQuery= true)
+	List<Map<String, Object>> idpersona(int id);
 }
