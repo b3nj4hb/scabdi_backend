@@ -161,7 +161,7 @@ public class SesionController {
 		}
 		
 		// ID PERSONA, RECIVE ID USUARIO {ID}
-		@GetMapping("/sesionactiva/{id}")
+		@GetMapping("/idpersona/{id}")
 		public ResponseEntity<List<Map<String,Object>>> idpersona(@PathVariable("id")int id) {
 			try {
 				List<Map<String,Object>> list = service.idpersona(id);
