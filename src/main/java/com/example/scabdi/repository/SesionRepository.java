@@ -30,7 +30,7 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 	// manda id sesion
 	@Query(value = "select concat(tp.NO_PERSONA,', ',tp.AP_PERSONA)persona, ts3.NO_SESION sesion, \r\n"
 			+ "ts3.FE_INICIO_SESION inicio, ts3.FE_FIN_SESION fin, ts3.ID_SESION idsesion,\r\n"
-			+ "tm.NO_MODULO, ts2.NO_SEDE\r\n"
+			+ "tm.NO_MODULO modulo, ts2.NO_SEDE sede\r\n"
 			+ "from tbl_banco_comunal tbc \r\n"
 			+ "join tbl_socio ts on tbc.ID_BANCO_COMUNAL = ts.ID_BANCO_COMUNAL \r\n"
 			+ "join tbl_sede ts2 on tbc.ID_SEDE = ts2.ID_SEDE \r\n"
@@ -41,6 +41,6 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 			+ "where tp.ID_PERSONA = ?\r\n"
 			+ "and ts3.FE_INICIO_SESION >= concat(EXTRACT(year FROM now()),'-',EXTRACT(MONTH FROM now()),'-0 ','00:00:00')\r\n"
 			+ "and ts3.FE_FIN_SESION <= date_add(now(),interval 1 month)\r\n"
-			+ "order by FE_INICIO_SESION desc limit 1;", nativeQuery = true)
+			+ "order by FE_INICIO_SESION desc limit 1", nativeQuery = true)
 	List<Map<String, Object>> sesionactiva(int id);
 }
