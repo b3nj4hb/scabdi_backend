@@ -143,4 +143,20 @@ public class SesionController {
 				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
+		
+		// SESION ACTIVA
+		@GetMapping("/sesionactiva")
+		public ResponseEntity<List<Map<String, Object>>> sesionactiva() {
+			try {
+				List<Map<String,Object>> list = new ArrayList<>();
+				list = service.sesionactiva();
+				if (list.isEmpty()) {
+					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				}
+				return new ResponseEntity<>(list, HttpStatus.OK);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
 }
