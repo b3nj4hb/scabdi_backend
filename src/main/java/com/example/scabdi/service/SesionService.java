@@ -23,6 +23,6 @@ public interface SesionService {
 	
 	List<Map<String,Object>> listarecurso(int id);
 	
-	List<Map<String, Object>> sesionactiva();
+	List<Map<String, Object>> sesionactiva(int id);
 	
 }

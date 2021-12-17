@@ -65,9 +65,9 @@ public class SesionServiceImpl implements SesionService{
 	}
 
 	@Override
-	public List<Map<String, Object>> sesionactiva() {
+	public List<Map<String, Object>> sesionactiva(int id) {
 		// TODO Auto-generated method stub
-		return repo.sesionactiva();
+		return repo.sesionactiva(id);
 	}
 
 }

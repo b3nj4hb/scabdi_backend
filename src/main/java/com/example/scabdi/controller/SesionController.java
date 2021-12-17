@@ -144,12 +144,12 @@ public class SesionController {
 			}
 		}
 		
-		// SESION ACTIVA
-		@GetMapping("/sesionactiva")
-		public ResponseEntity<List<Map<String, Object>>> sesionactiva() {
+		// SESION ACTIVA RECIVE ID PERSONA {ID}
+		@GetMapping("/sesionactiva/{id}")
+		public ResponseEntity<List<Map<String,Object>>> sesionactiva(@PathVariable("id")int id) {
 			try {
-				List<Map<String,Object>> list = new ArrayList<>();
-				list = service.sesionactiva();
+				List<Map<String,Object>> list = service.sesionactiva(id);
+				list = service.sesionactiva(id);
 				if (list.isEmpty()) {
 					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 				}
