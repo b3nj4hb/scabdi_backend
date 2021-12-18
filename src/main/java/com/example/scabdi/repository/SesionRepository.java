@@ -28,20 +28,16 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 	List<Map<String, Object>> listarecurso(int id);
 
 	// manda id sesion
-	@Query(value = "select concat(tp.NO_PERSONA,', ',tp.AP_PERSONA)persona, ts3.NO_SESION sesion, \r\n"
-			+ "ts3.FE_INICIO_SESION inicio, ts3.FE_FIN_SESION fin, ts3.ID_SESION idsesion,\r\n"
-			+ "tm.NO_MODULO modulo, ts2.NO_SEDE sede\r\n"
-			+ "from tbl_banco_comunal tbc \r\n"
-			+ "join tbl_socio ts on tbc.ID_BANCO_COMUNAL = ts.ID_BANCO_COMUNAL \r\n"
-			+ "join tbl_sede ts2 on tbc.ID_SEDE = ts2.ID_SEDE \r\n"
-			+ "join tbl_persona tp on ts.ID_PERSONA = tp.ID_PERSONA \r\n"
-			+ "join tbl_banco_modulo tbm on tbc.ID_BANCO_COMUNAL = tbm.ID_MODULO \r\n"
-			+ "join tbl_modulo tm on tbm.ID_MODULO = tm.ID_MODULO \r\n"
-			+ "join tbl_sesion ts3 on tm.ID_MODULO = ts3.ID_MODULO \r\n"
-			+ "where tp.ID_PERSONA = ?\r\n"
-			+ "and ts3.FE_INICIO_SESION >= concat(EXTRACT(year FROM now()),'-',EXTRACT(MONTH FROM now()),'-0 ','00:00:00')\r\n"
-			+ "and ts3.FE_FIN_SESION <= date_add(now(),interval 1 month)\r\n"
-			+ "order by FE_INICIO_SESION desc limit 1", nativeQuery = true)
+	@Query(value = "select ts.ID_SESION idsesion, ts.NO_SESION sesion\r\n"
+			+ "from tbl_sesion ts \r\n"
+			+ "join tbl_modulo tm on ts.ID_MODULO = tm.ID_MODULO \r\n"
+			+ "join tbl_banco_modulo tbm on tm.ID_MODULO = tbm.ID_MODULO \r\n"
+			+ "join tbl_banco_comunal tbc on tbm.ID_BANCO_COMUNAL = tbc.ID_BANCO_COMUNAL \r\n"
+			+ "join tbl_socio ts2 on tbc.ID_BANCO_COMUNAL = ts2.ID_BANCO_COMUNAL \r\n"
+			+ "where ts2.ID_PERSONA = 3\r\n"
+			+ "and ts.FE_INICIO_SESION >= concat(EXTRACT(year FROM now()),'-',EXTRACT(MONTH FROM now()),'-0 ','00:00:00')\r\n"
+			+ "and ts.FE_FIN_SESION <= date_add(now(),interval 1 month)\r\n"
+			+ "order by ts.FE_INICIO_SESION asc limit 1", nativeQuery = true)
 	List<Map<String, Object>> sesionactiva(int id);
 	
 	//devuelve id persona
