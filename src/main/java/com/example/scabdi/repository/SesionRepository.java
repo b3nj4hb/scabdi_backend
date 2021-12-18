@@ -34,7 +34,7 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 			+ "join tbl_banco_modulo tbm on tm.ID_MODULO = tbm.ID_MODULO \r\n"
 			+ "join tbl_banco_comunal tbc on tbm.ID_BANCO_COMUNAL = tbc.ID_BANCO_COMUNAL \r\n"
 			+ "join tbl_socio ts2 on tbc.ID_BANCO_COMUNAL = ts2.ID_BANCO_COMUNAL \r\n"
-			+ "where ts2.ID_PERSONA = 3\r\n"
+			+ "where ts2.ID_PERSONA = ?\r\n"
 			+ "and ts.FE_INICIO_SESION >= concat(EXTRACT(year FROM now()),'-',EXTRACT(MONTH FROM now()),'-0 ','00:00:00')\r\n"
 			+ "and ts.FE_FIN_SESION <= date_add(now(),interval 1 month)\r\n"
 			+ "order by ts.FE_INICIO_SESION asc limit 1", nativeQuery = true)
