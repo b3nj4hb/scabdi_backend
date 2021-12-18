@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.scabdi.entity.Sesion;
@@ -28,17 +29,8 @@ public interface SesionRepository extends JpaRepository<Sesion, Integer> {
 	List<Map<String, Object>> listarecurso(int id);
 
 	// manda id sesion
-	@Query(value = "select ts.ID_SESION idsesion, ts.NO_SESION sesion\r\n"
-			+ "from tbl_sesion ts \r\n"
-			+ "join tbl_modulo tm on ts.ID_MODULO = tm.ID_MODULO \r\n"
-			+ "join tbl_banco_modulo tbm on tm.ID_MODULO = tbm.ID_MODULO \r\n"
-			+ "join tbl_banco_comunal tbc on tbm.ID_BANCO_COMUNAL = tbc.ID_BANCO_COMUNAL \r\n"
-			+ "join tbl_socio ts2 on tbc.ID_BANCO_COMUNAL = ts2.ID_BANCO_COMUNAL \r\n"
-			+ "where ts2.ID_PERSONA = ?\r\n"
-			+ "and ts.FE_INICIO_SESION >= concat(EXTRACT(year FROM now()),'-',EXTRACT(MONTH FROM now()),'-0 ','00:00:00')\r\n"
-			+ "and ts.FE_FIN_SESION <= date_add(now(),interval 1 month)\r\n"
-			+ "order by ts.FE_INICIO_SESION asc limit 1", nativeQuery = true)
-	List<Map<String, Object>> sesionactiva(int id);
+	@Query(value = "{call SP_SESION_ACTUAL(:p_idsocio)}", nativeQuery = true)
+	List<Map<String, Object>> sesionactiva(@Param("p_idsocio")int id);
 	
 	//devuelve id persona
 	@Query(value = "select tp.ID_PERSONA idpersona from tsg_usuario tu\r\n"
