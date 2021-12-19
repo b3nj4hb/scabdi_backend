@@ -58,4 +58,10 @@ public class ModuloServiceImpl implements ModuloService{
 		return repo.updatemodulo(mo.getArea().getId(), mo.getNombre(), mo.getDescripcion(), mo.getId());
 	}
 
+	@Override
+	public Modulo buscarModulo(int id) {
+		// TODO Auto-generated method stub
+		return repo.buscarModulo(id);
+	}
+
 }

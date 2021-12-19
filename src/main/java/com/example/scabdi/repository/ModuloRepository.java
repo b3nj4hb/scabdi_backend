@@ -37,4 +37,6 @@ public interface ModuloRepository extends JpaRepository<Modulo, Integer>{
 	 			+ "set id_area = ?, no_modulo = ?, de_modulo = ?\r\n"
 	 			+ "where id_modulo = ?", nativeQuery = true)
 	 	String updatemodulo(int idarea, String nombre, String descripcion, int idmodulo);
+	 	@Query(value = "select * from tbl_modulo where ID_MODULO = ?", nativeQuery = true)
+	 	Modulo buscarModulo(int id);
 }

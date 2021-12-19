@@ -12,4 +12,5 @@ public interface ModuloService {
 	Modulo update(Modulo mo);
 	List<Map<String,Object>> modulosporbanco();
 	String updatemodulo(Modulo mo);
+	Modulo buscarModulo(int id);
 }

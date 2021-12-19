@@ -119,7 +119,7 @@ public class ModuloController {
 	@PutMapping("/updatemodulo/{id}")
 	public ResponseEntity<String> actualizarModulo(@RequestBody Modulo m, @PathVariable("id") int id){
 	try {
-		Modulo ul = service.read(id);
+		Modulo ul = service.buscarModulo(id);
 		if (ul.getId()>0) {
 			ul.setNombre(m.getNombre());
 			ul.setArea(m.getArea());
