@@ -117,20 +117,31 @@ public class ModuloController {
 
 	// ACTUALIZAR {ID}
 	@PutMapping("/updatemodulo/{id}")
-	public ResponseEntity<String> actualizarModulo(@RequestBody Modulo m, @PathVariable("id") int id){
-	try {
-		Modulo ul = service.buscarModulo(id);
-		if (ul.getId()>0) {
-			ul.setNombre(m.getNombre());
-			ul.setArea(m.getArea());
-			ul.setDescripcion(m.getDescripcion());
-			return new ResponseEntity<>(service.updatemodulo(ul) ,HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<String> actualizarModulo(@RequestBody Modulo m, @PathVariable("id") int id) {
+		try {
+			Modulo ul = service.buscarModulo(id);
+			if (ul.getId() > 0) {
+				ul.setNombre(m.getNombre());
+				ul.setArea(m.getArea());
+				ul.setDescripcion(m.getDescripcion());
+				return new ResponseEntity<>(service.updatemodulo(ul), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	} catch (Exception e) {
-		// TODO: handle exception
-		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	// BUSCAR {ID}
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<Modulo> buscarModulo(@PathVariable("id") int id) {
+		Modulo m = service.buscarModulo(id);
+		if (m.getId() > 0) {
+			return new ResponseEntity<>(m, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
 }
