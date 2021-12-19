@@ -52,4 +52,10 @@ public class ModuloServiceImpl implements ModuloService{
 		return repo.modulosporbanco();
 	}
 
+	@Override
+	public String updatemodulo(Modulo mo) {
+		// TODO Auto-generated method stub
+		return repo.updatemodulo(mo.getArea().getId(), mo.getNombre(), mo.getDescripcion(), mo.getId());
+	}
+
 }

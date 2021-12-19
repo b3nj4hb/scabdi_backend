@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.scabdi.entity.Modulo;
 import com.example.scabdi.service.ModuloService;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/modulo")
@@ -40,77 +41,96 @@ public class ModuloController {
 	}
 
 	// LISTAR
-		@GetMapping("/all")
-		public ResponseEntity<List<Modulo>> list() {
-			try {
-				List<Modulo> list = new ArrayList<>();
-				list = service.readAll();
-				if (list.isEmpty()) {
-					return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-				}
-				return new ResponseEntity<>(list, HttpStatus.OK);
-			} catch (Exception e) {
-				// TODO: handle exception
-				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	@GetMapping("/all")
+	public ResponseEntity<List<Modulo>> list() {
+		try {
+			List<Modulo> list = new ArrayList<>();
+			list = service.readAll();
+			if (list.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		// BUSCAR {ID}
-		@GetMapping("/read/{id}")
-		public ResponseEntity<Modulo> search(@PathVariable("id") int id) {
+	}
+
+	// BUSCAR {ID}
+	@GetMapping("/read/{id}")
+	public ResponseEntity<Modulo> search(@PathVariable("id") int id) {
+		Modulo us = service.read(id);
+		if (us.getId() > 0) {
+			return new ResponseEntity<>(us, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	// ELIMINAR
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
+		try {
+			service.delete(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	// ACTUALIZAR {ID}
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Modulo> update(@RequestBody Modulo u, @PathVariable("id") int id) {
+		try {
 			Modulo us = service.read(id);
 			if (us.getId() > 0) {
-				return new ResponseEntity<>(us, HttpStatus.OK);
+				us.setArea(u.getArea());
+				us.setNombre(u.getNombre());
+				us.setDescripcion(u.getDescripcion());
+				us.setRecursos(u.getRecursos());
+
+				return new ResponseEntity<>(service.create(us), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
-		}
 
-		// ELIMINAR
-		@DeleteMapping("/delete/{id}")
-		public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
-			try {
-				service.delete(id);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	// LISTAR
+	@GetMapping("/modulosporbanco")
+	public ResponseEntity<List<Map<String, Object>>> modulosporbanco() {
+		try {
+			List<Map<String, Object>> list = new ArrayList<>();
+			list = service.modulosporbanco();
+			if (list.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			} catch (Exception e) {
-				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
+			return new ResponseEntity<>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		// ACTUALIZAR {ID}
-		@PutMapping("/update/{id}")
-		public ResponseEntity<Modulo> update(@RequestBody Modulo u, @PathVariable("id") int id) {
-			try {
-				Modulo us = service.read(id);
-				if (us.getId() > 0) {
-					us.setArea(u.getArea());
-					us.setNombre(u.getNombre());
-					us.setDescripcion(u.getDescripcion());
-					us.setRecursos(u.getRecursos());
+	}
 
-					return new ResponseEntity<>(service.create(us), HttpStatus.OK);
-				} else {
-					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				}
-
-			} catch (Exception e) {
-				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
+	// ACTUALIZAR {ID}
+	@PutMapping("/updatemodulo/{id}")
+	public ResponseEntity<String> actualizarModulo(@RequestBody Modulo m, @PathVariable("id") int id){
+	try {
+		Modulo ul = service.read(id);
+		if (ul.getId()>0) {
+			ul.setNombre(m.getNombre());
+			ul.setArea(m.getArea());
+			ul.setDescripcion(m.getDescripcion());
+			return new ResponseEntity<>(service.updatemodulo(ul) ,HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
-		// LISTAR
-				@GetMapping("/modulosporbanco")
-				public ResponseEntity<List<Map<String,Object>>> modulosporbanco() {
-					try {
-						List<Map<String,Object>> list = new ArrayList<>();
-						list = service.modulosporbanco();
-						if (list.isEmpty()) {
-							return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-						}
-						return new ResponseEntity<>(list, HttpStatus.OK);
-					} catch (Exception e) {
-						// TODO: handle exception
-						return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-					}
-				}
+	} catch (Exception e) {
+		// TODO: handle exception
+		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	}
 }

@@ -33,4 +33,8 @@ public interface ModuloRepository extends JpaRepository<Modulo, Integer>{
 	 			+ "join tbl_banco_modulo bm on m.id_modulo = bm.id_modulo\r\n"
 	 			+ "join tbl_banco_comunal bc on bm.id_banco_comunal = bc.id_banco_comunal", nativeQuery = true)
 	 	List<Map<String,Object>> modulosporbanco();
+	 	@Query(value = "update tbl_modulo \r\n"
+	 			+ "set id_area = ?, no_modulo = ?, de_modulo = ?\r\n"
+	 			+ "where id_modulo = ?", nativeQuery = true)
+	 	String updatemodulo(int idarea, String nombre, String descripcion, int idmodulo);
 }

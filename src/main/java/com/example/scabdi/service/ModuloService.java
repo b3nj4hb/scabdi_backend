@@ -11,4 +11,5 @@ public interface ModuloService {
 	void delete(int id);
 	Modulo update(Modulo mo);
 	List<Map<String,Object>> modulosporbanco();
+	String updatemodulo(Modulo mo);
 }
